@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MEI</string>
+    <string name="bottom_navmenu_home">Home</string>
+    <string name="bottom_navmenu_country">country</string>
+    <string name="bottom_navmenu_titer">titer</string>
+    <string name="bottom_navmenu_vaccine">vaccine</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
