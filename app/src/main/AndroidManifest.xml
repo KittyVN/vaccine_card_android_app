@@ -9,7 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".TiterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VaccineActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CountryActivity"
+            android:exported="false" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
