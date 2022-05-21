@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 public class CountryActivity extends AppCompatActivity {
-    BottomNavigationView btmNavView;
+    private BottomNavigationView btmNavView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
