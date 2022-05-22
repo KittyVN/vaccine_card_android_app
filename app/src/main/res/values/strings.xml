@@ -4,4 +4,8 @@
     <string name="bottom_navmenu_country">Country</string>
     <string name="bottom_navmenu_titer">Titer</string>
     <string name="bottom_navmenu_vaccine">Vaccine</string>
+    <string name="tvHome_welcome">Willkommen zurück Stephan</string>
+    <string name="tvHome_impfungen">Impfungen</string>
+    <string name="tvHome_titer">Titer</string>
+    <string name="tvHome_reisen"><![CDATA[Reisen & Impfen]]></string>
 </resources>

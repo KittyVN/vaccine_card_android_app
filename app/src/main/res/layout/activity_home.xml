@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/PatientBasicInfo_patientNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,15 +48,68 @@
         android:layout_marginEnd="16dp"
         android:text="Address"
         android:textSize="15dp" />
+        -->
+    <TextView
+        android:id="@+id/tvHome_Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textSize="45sp"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:text="@string/tvHome_welcome"
+        android:gravity="start"/>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Impfungen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_navmenu"
-        app:itemTextColor="@drawable/bottom_navmenu_selector"
-        app:itemIconTint="@drawable/bottom_navmenu_selector"
-        app:itemBackground="@color/colorPrimary"
-        android:layout_alignParentBottom="true"/>
+        android:layout_below="@id/tvHome_Welcome"
+        android:text="@string/tvHome_impfungen"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableRight="@drawable/home_reisen"
+        android:drawableEnd="@drawable/home_reisen"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Titer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnHome_Impfungen"
+        android:text="@string/tvHome_titer"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableLeft="@drawable/home_titer"
+        android:drawableStart="@drawable/home_titer"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Reisen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnHome_Titer"
+        android:text="@string/tvHome_reisen"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableRight="@drawable/home_reisen"
+        android:drawableEnd="@drawable/home_reisen"/>
+
+
+    <android.support.design.widget.BottomNavigationView
+     android:id="@+id/bottomNavigationView"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     app:menu="@menu/bottom_navmenu"
+     app:itemTextColor="@drawable/bottom_navmenu_selector"
+     app:itemIconTint="@drawable/bottom_navmenu_selector"
+     app:itemBackground="@color/colorPrimary"
+     android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

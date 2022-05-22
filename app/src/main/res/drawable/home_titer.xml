@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/antibody_titer_thumb"
+        android:width="200dp"
+        android:height="100dp">
+    </item>
+
+</layer-list>

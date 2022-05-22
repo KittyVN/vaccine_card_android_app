@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Address;
@@ -58,8 +60,29 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        AppCompatButton btnVaccine = (AppCompatButton)findViewById(R.id.btnHome_Impfungen);
+        btnVaccine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, VaccineActivity.class));
+            }
+        });
 
+        AppCompatButton btnTiter = (AppCompatButton)findViewById(R.id.btnHome_Titer);
+        btnTiter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, TiterActivity.class));
+            }
+        });
 
+        AppCompatButton btnCountry = (AppCompatButton)findViewById(R.id.btnHome_Reisen);
+        btnCountry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, CountryActivity.class));
+            }
+        });
 
 
         //ab hier ist nur mehr probieren
@@ -84,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
         }
 
 
-
+/*
         private class showData extends AsyncTask<String, String, String> {
 
                 @Override
@@ -199,5 +222,5 @@ public class HomeActivity extends AppCompatActivity {
 
 
                 }
-            }
+            }*/
 }
