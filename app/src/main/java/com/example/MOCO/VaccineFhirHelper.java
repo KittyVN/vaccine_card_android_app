@@ -3,6 +3,7 @@ package com.example.MOCO;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
 
 import java.util.List;
@@ -33,6 +34,10 @@ public class VaccineFhirHelper {
                     .returnBundle(Bundle.class)
                     .execute();
             return BundleUtil.toListOfResourcesOfType(ctx, bundle, Immunization.class);
+        }
+
+        public Organization getOrganization(String ref){
+        return client.read().resource(Organization.class).withId(ref).execute();
         }
 
 

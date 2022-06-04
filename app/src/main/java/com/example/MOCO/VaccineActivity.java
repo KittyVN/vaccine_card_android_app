@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import org.hl7.fhir.r4.model.Immunization;
 
 import java.lang.ref.WeakReference;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,8 @@ public class VaccineActivity extends AppCompatActivity {
     public List<String> vaccineKrankheit = new ArrayList<String>();
     private List<String> vaccineHersteller = new ArrayList<String>();
     private List<String> vaccineDate = new ArrayList<String>();
+    private List<String> vaccineLotNumber = new ArrayList<String>();
+
     private RecyclerView rvVaccine;
     private Context ctx = this;
 
@@ -80,6 +83,7 @@ public class VaccineActivity extends AppCompatActivity {
             //return list;
             List<Immunization> listVaccines = gcm.getVacciness();
 
+
             // IParser parser = gcm.ctx.newJsonParser();
             // for (Immunization vaccine : listVaccines) {
             //    Immunization imm = parser.parseResource(Immunization.class, listVaccines.get(0).toString());
@@ -91,16 +95,18 @@ public class VaccineActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<Immunization> vaccines) {
             VaccineActivity activity = activityReference.get();
+
             for (Immunization vaccine : vaccines) {
                 //b.append(vaccine.getText().getDiv().getValueAsString()).append('\n');
                 activity.vaccineKrankheit.add(vaccine.getVaccineCode().getText());
-                activity.vaccineHersteller.add(vaccine.getManufacturer().toString());
-                activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().toString());
+                activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
+                activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
+                activity.vaccineLotNumber.add(vaccine.getLotNumber());
             }
             System.out.println(activity.vaccineKrankheit);
             activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
 
-            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate);
+            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber);
             activity.rvVaccine.setAdapter(vacAdapter);
             activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
