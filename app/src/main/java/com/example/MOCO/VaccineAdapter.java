@@ -8,14 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.apache.commons.lang3.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder> {
 
-    private String[] vaccineKrankheit;
-    private String[] vaccineHersteller;
-    private String[] vaccineDate;
+    private List<String> vaccineKrankheit = new ArrayList<String>();
+    private List<String> vaccineHersteller = new ArrayList<String>();
+    private List<String> vaccineDate = new ArrayList<String>();
     private Context ctx;
 
-public VaccineAdapter(Context ct, String[] s1, String[] s2, String[] s3){
+public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3){
  ctx = ct;
  vaccineKrankheit = s1;
  vaccineHersteller = s2;
@@ -34,14 +39,18 @@ public VaccineAdapter(Context ct, String[] s1, String[] s2, String[] s3){
 
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder vaccineViewHolder, int i) {
-        vaccineViewHolder.krankheit.setText(vaccineKrankheit[i]);
-        vaccineViewHolder.hersteller.setText(vaccineHersteller[i]);
-        vaccineViewHolder.date.setText(vaccineDate[i]);
+        vaccineViewHolder.krankheit.setText(vaccineKrankheit.get(i));
+        vaccineViewHolder.hersteller.setText(vaccineHersteller.get(i));
+        vaccineViewHolder.date.setText(vaccineDate.get(i));
 }
 
     @Override
     public int getItemCount() {
-        return vaccineDate.length;
+    if (vaccineDate == null){
+        return 0;
+    }else{
+        return vaccineDate.size();
+        }
     }
 
     public class VaccineViewHolder extends RecyclerView.ViewHolder{
