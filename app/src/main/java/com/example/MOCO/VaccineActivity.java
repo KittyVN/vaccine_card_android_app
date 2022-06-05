@@ -22,7 +22,7 @@ import ca.uhn.fhir.parser.IParser;
 
 public class VaccineActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
-    public List<String> vaccineKrankheit = new ArrayList<String>();
+    private List<String> vaccineKrankheit = new ArrayList<String>();
     private List<String> vaccineHersteller = new ArrayList<String>();
     private List<String> vaccineDate = new ArrayList<String>();
     private List<String> vaccineLotNumber = new ArrayList<String>();
@@ -62,16 +62,16 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
 
-        new MyTask(this).execute();
+        new VaccineTask(this).execute();
 
     }
 
-    private static class MyTask extends AsyncTask<Void, Object, List<Immunization>> {
+    private static class VaccineTask extends AsyncTask<Void, Object, List<Immunization>> {
 
         private WeakReference<VaccineActivity> activityReference;
 
         // only retain a weak reference to the activity
-        MyTask(VaccineActivity context) {
+        VaccineTask(VaccineActivity context) {
             activityReference = new WeakReference<>(context);
         }
         @Override

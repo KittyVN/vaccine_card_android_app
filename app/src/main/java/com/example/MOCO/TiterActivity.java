@@ -1,14 +1,33 @@
 package com.example.MOCO;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+
+import org.hl7.fhir.r4.model.Immunization;
+import org.hl7.fhir.r4.model.Observation;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TiterActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
+    private List<String> titerTyp = new ArrayList<String>();
+    private List<String> titerLabor = new ArrayList<String>();
+    private List<String> titerDate = new ArrayList<String>();
+    private List<String> titerValue = new ArrayList<String>();
+
+
+    private RecyclerView rvTiter;
+    private Context ctx = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +60,43 @@ public class TiterActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        new TiterTask(this).execute();
+
+    }
+
+    private static class TiterTask extends AsyncTask<Void, Object, List<Observation>> {
+
+        private WeakReference<TiterActivity> activityReference;
+
+        // only retain a weak reference to the activity
+        TiterTask(TiterActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+        @Override
+        protected List<Observation> doInBackground(Void... voids) {
+            VaccineFhirHelper gcm = new VaccineFhirHelper();
+
+            //return list;
+            List<Observation> listTiters = gcm.getTiters();
+
+            return listTiters;
+        }
+        @Override
+        protected void onPostExecute(List<Observation> titers) {
+            TiterActivity activity = activityReference.get();
+
+            for (Observation titer : titers) {
+                activity.titerTyp.add(titer.getCode().getText());
+                activity.titerLabor.add(titer.getPerformerFirstRep().getReference());
+                activity.titerDate.add(titer.getEffectiveDateTimeType().asStringValue());
+                activity.titerValue.add(titer.getValueIntegerType().asStringValue());
+            }
+            activity.rvTiter = activity.findViewById(R.id.rvTiter);
+
+            TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.titerTyp, activity.titerLabor, activity.titerDate, activity.titerValue);
+            activity.rvTiter.setAdapter(titerAdapter);
+            activity.rvTiter.setLayoutManager(new LinearLayoutManager(activity.ctx));
+        }
     }
 }
