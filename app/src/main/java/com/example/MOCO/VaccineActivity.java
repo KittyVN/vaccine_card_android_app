@@ -102,8 +102,64 @@ public class VaccineActivity extends AppCompatActivity {
                 activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
+
+
+                /*  Could be usefull if we want to use Protocol applied
+                if (vaccine.getProtocolApplied().size() > 0){
+                    activity.vaccineKrankheit.add(vaccine.getProtocolApplied().get(0).getTargetDisease().toString());
+                }else {
+                    activity.vaccineKrankheit.add("");
+                }*/
             }
             System.out.println(activity.vaccineKrankheit);
+
+            //get the references
+            new VaccineTask1(activity).execute();
+
+
+            //activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
+
+            //VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber);
+            //activity.rvVaccine.setAdapter(vacAdapter);
+            //activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
+        }
+    }
+
+    private static class VaccineTask1 extends AsyncTask<Void, Object, List<String>> {
+        private WeakReference<VaccineActivity> activityReference;
+
+
+
+        VaccineTask1(VaccineActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            VaccineFhirHelper gcm = new VaccineFhirHelper();
+            VaccineActivity activity = activityReference.get();
+
+            //List<Patient> list = new ArrayList<Patient>();
+            //list.add(gcm.getExamplePatient());
+
+            //return list;
+            for(int i =0 ; i < activity.vaccineHersteller.size(); i++) {
+                if (activity.vaccineHersteller.get(i) != null){
+                    activity.vaccineHersteller.set(i,gcm.getOrganization(activity.vaccineHersteller.get(i)).getName());
+                }
+            }
+
+            return activity.vaccineHersteller;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> herstellerList) {
+            VaccineActivity activity = activityReference.get();
+
+            for (String hersteller : herstellerList) {
+                System.out.println(hersteller);
+            }
+
             activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
 
             VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber);
