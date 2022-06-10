@@ -27,11 +27,11 @@ public class CountryActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
     private Context ctx = this;
     private CountryActivity activity = this;
-    //private TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputCountry);
     private List<String> countryName = new ArrayList<String>();
     private List<String> countryNecessary = new ArrayList<String>();
     private List<String> countryRecommended = new ArrayList<String>();
     private RecyclerView rvCountry;
+    private String enteredSearchCountry;
 
 
 
@@ -69,10 +69,13 @@ public class CountryActivity extends AppCompatActivity {
 
 
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch);
+        TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputCountry);
+
         btnCountrySearch.setOnClickListener( new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                enteredSearchCountry = tvSearch.getText().toString();
                 new CountryTask(activity).execute();
             }
         });
@@ -81,10 +84,12 @@ public class CountryActivity extends AppCompatActivity {
     private static class CountryTask extends AsyncTask<Void, Object, List<Location>> {
 
         private WeakReference<CountryActivity> activityReference;
+        private CountryActivity activity;
 
         // only retain a weak reference to the activity
         CountryTask(CountryActivity context) {
             activityReference = new WeakReference<>(context);
+            activity = activityReference.get();
         }
         
         @Override
@@ -92,13 +97,16 @@ public class CountryActivity extends AppCompatActivity {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
             //fix so it shows the country you searched for
-            List<Location> listCountries = gcm.getLocations("");
+            List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
 
             return listCountries;
         }
         @Override
         protected void onPostExecute(List<Location> locations) {
-            CountryActivity activity = activityReference.get();
+
+            activity.countryName.clear();
+            activity.countryNecessary.clear();
+            activity.countryRecommended.clear();
 
             for (Location location : locations) {
                 activity.countryName.add(location.getName());
