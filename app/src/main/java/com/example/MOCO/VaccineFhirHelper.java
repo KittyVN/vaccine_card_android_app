@@ -2,6 +2,7 @@ package com.example.MOCO;
 
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Immunization;
+import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
@@ -44,7 +45,17 @@ public class VaccineFhirHelper {
                     .returnBundle(Bundle.class)
                     .execute();
             return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
-    }
+        }
+
+        public List<Location> getLocations(String country){
+            Bundle bundle = client.search().forResource(Location.class)
+                    .where(new TokenClientParam("name").exactly().code(country))
+                    .prettyPrint()
+                    .returnBundle(Bundle.class)
+                    .execute();
+            return BundleUtil.toListOfResourcesOfType(ctx, bundle, Location.class);
+        }
+
 
         public Organization getOrganization(String ref){
         return client.read().resource(Organization.class).withId(ref).execute();
