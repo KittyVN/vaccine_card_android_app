@@ -1,0 +1,87 @@
+{
+    "resourceType": "ImmunizationRecommendation",
+    "date": "2022-06-15",
+    "patient": {
+        "reference": "Patient/100"
+    },
+    "recommendation": [
+        {
+            "vaccineCode": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/cvx",
+                            "code": "01"
+                        }
+                    ]
+                }
+            ],
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+            "vaccineCode": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/cvx",
+                            "code": "43"
+                        }
+                    ]
+                }
+            ],
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Close sozial contacts or long term visit"
+        },
+        {
+            "vaccineCode": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/cvx",
+                            "code": "03"
+                        }
+                    ]
+                }
+            ],
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Only for children"
+        },
+        {
+            "vaccineCode": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://hl7.org/fhir/sid/cvx",
+                            "code": "77"
+                        }
+                    ]
+                }
+            ],
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "from April to October"
+        }
+    ],
+    "extension": [
+        {
+            "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusLocation",
+            "valueReference": {
+                "reference": "Location/101"
+            }
+        }
+    ]
+}

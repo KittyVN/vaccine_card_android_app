@@ -1,0 +1,14 @@
+{
+    "resourceType": "Location",
+    "id": "101",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "NOR"
+        }
+    ],
+    "name": "Norway",
+    "address": {
+        "country": "Norway"
+    }
+}
