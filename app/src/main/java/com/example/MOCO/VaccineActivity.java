@@ -26,6 +26,10 @@ public class VaccineActivity extends AppCompatActivity {
     private List<String> vaccineHersteller = new ArrayList<String>();
     private List<String> vaccineDate = new ArrayList<String>();
     private List<String> vaccineLotNumber = new ArrayList<String>();
+    private List<String> vaccinePerformer = new ArrayList<String>();
+    private List<String> vaccineDoseNumber = new ArrayList<String>();
+    private List<String> vaccineDoseNumberTotal = new ArrayList<String>();
+
 
     private RecyclerView rvVaccine;
     private Context ctx = this;
@@ -81,7 +85,7 @@ public class VaccineActivity extends AppCompatActivity {
             //list.add(gcm.getExamplePatient());
 
             //return list;
-            List<Immunization> listVaccines = gcm.getVacciness();
+            List<Immunization> listVaccines = gcm.getAllVacciness();
 
 
             // IParser parser = gcm.ctx.newJsonParser();
@@ -102,7 +106,14 @@ public class VaccineActivity extends AppCompatActivity {
                 activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
-
+                activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                if (vaccine.getProtocolApplied().size() > 0) {
+                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberStringType().toString());
+                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesStringType().toString());
+                }else {
+                    activity.vaccineDoseNumber.add("Unknown");
+                    activity.vaccineDoseNumberTotal.add("Unknown");
+                }
 
                 /*  Could be usefull if we want to use Protocol applied
                 if (vaccine.getProtocolApplied().size() > 0){
@@ -162,7 +173,7 @@ public class VaccineActivity extends AppCompatActivity {
 
             activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
 
-            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber);
+            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber, activity.vaccinePerformer,activity.vaccineDoseNumber,activity.vaccineDoseNumberTotal);
             activity.rvVaccine.setAdapter(vacAdapter);
             activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
