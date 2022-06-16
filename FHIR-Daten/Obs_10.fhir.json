@@ -1,0 +1,26 @@
+{
+    "resourceType": "Observation",
+    "id": "Obs010",
+    "subject": {
+        "reference": "Patient/100",
+        "display": "Stepfan Graf - m"
+    },
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "95429-7",
+                "display": "SARS-CoV-2 (COVID-19) IgG IF [Titer]"
+            }
+        ]
+    },
+    "performer": [
+        {
+            "reference": "Organization/200"
+        }
+    ],
+    "valueQuantity": {
+        "unit": "BAU/ml",
+        "value": 108900
+    }
+}
