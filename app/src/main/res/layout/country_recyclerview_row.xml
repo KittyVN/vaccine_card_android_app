@@ -21,9 +21,9 @@
                 android:id="@+id/tvCountryTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Land"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,8 +31,8 @@
                 android:id="@+id/tvCountry"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:text="Text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCountryTitle" />
 
@@ -40,9 +40,9 @@
                 android:id="@+id/tvNecessaryVaccinesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Necessary"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCountry" />
 
@@ -50,8 +50,8 @@
                 android:id="@+id/tvNecessaryVaccines"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:text="Text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNecessaryVaccinesTitle" />
 
@@ -59,9 +59,9 @@
                 android:id="@+id/tvRecommendedVaccinesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Recommended"
                 android:textStyle="bold"
-                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNecessaryVaccines" />
 
@@ -69,8 +69,8 @@
                 android:id="@+id/tvRecommendedVaccines"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:text="Text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRecommendedVaccinesTitle" />
 
@@ -78,11 +78,10 @@
                 android:id="@+id/tvTrafficLight"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                app:layout_constraintStart_toEndOf="@+id/tvRecommendedVaccines"
-                app:layout_constraintTop_toTopOf="@+id/tvCountry"
-                android:foreground="@android:color/holo_red_light"
                 android:layout_marginLeft="25dp"
-                />
+                android:foreground="@android:color/holo_red_light"
+                app:layout_constraintStart_toEndOf="@+id/tvRecommendedVaccines"
+                app:layout_constraintTop_toTopOf="@+id/tvCountry" />
 
 
         </android.support.constraint.ConstraintLayout>

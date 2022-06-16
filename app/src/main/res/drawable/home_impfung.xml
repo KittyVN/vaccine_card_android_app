@@ -3,6 +3,11 @@
     <item
         android:drawable="@drawable/impfung"
         android:width="200dp"
-        android:height="100dp">
+        android:height="100dp"
+        android:topLeftRadius="16dp"
+        android:topRightRadius="16dp"
+        android:bottomLeftRadius="0.1dp" android:bottomRightRadius="0.1dp"
+        >
+
     </item>
 </layer-list>
