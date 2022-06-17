@@ -21,17 +21,22 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
     private List<String> vaccineHersteller = new ArrayList<String>();
     private List<String> vaccineDate = new ArrayList<String>();
     private List<String> vaccineLotNumber = new ArrayList<String>();
+    private List<String> vaccinePerformer = new ArrayList<String>();
+    private List<String> vaccineDoseNumber = new ArrayList<String>();
+    private List<String> vaccineDoseNumberTotal = new ArrayList<String>();
     private Context ctx;
     private ProgressBar spinner;
     private WebView webview;
 
-public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3, List<String> s4){
+public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3, List<String> s4, List<String> s5,List<String> s6,List<String> s7){
  ctx = ct;
  vaccineKrankheit = s1;
  vaccineHersteller = s2;
  vaccineDate = s3;
  vaccineLotNumber = s4;
-
+ vaccinePerformer = s5;
+ vaccineDoseNumber = s6;
+ vaccineDoseNumberTotal = s7;
 }
 
 
@@ -50,6 +55,8 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
         vaccineViewHolder.hersteller.setText(vaccineHersteller.get(i));
         vaccineViewHolder.date.setText(vaccineDate.get(i));
         vaccineViewHolder.lotNumber.setText(vaccineLotNumber.get(i));
+        vaccineViewHolder.performer.setText(vaccinePerformer.get(i));
+        vaccineViewHolder.doses.setText(vaccineDoseNumber.get(i) + "/" + vaccineDoseNumberTotal.get(i));
     }
 
     @Override
@@ -62,7 +69,7 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
     }
 
     public class VaccineViewHolder extends RecyclerView.ViewHolder{
-    TextView krankheit,hersteller,date,lotNumber;
+    TextView krankheit,hersteller,date,lotNumber,performer,doses;
 
         public VaccineViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +77,8 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
             hersteller = itemView.findViewById(R.id.tvHersteller);
             date = itemView.findViewById(R.id.tvDate);
             lotNumber = itemView.findViewById(R.id.tvLotNumber);
+            performer = itemView.findViewById(R.id.tvPerformer);
+            doses = itemView.findViewById(R.id.tvDoses);
         }
     }
 }

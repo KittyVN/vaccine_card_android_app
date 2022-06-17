@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import org.hl7.fhir.r4.model.Immunization;
+import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import org.hl7.fhir.r4.model.Location;
 
 import java.lang.ref.WeakReference;
@@ -28,8 +29,8 @@ public class CountryActivity extends AppCompatActivity {
     private Context ctx = this;
     private CountryActivity activity = this;
     private List<String> countryName = new ArrayList<String>();
-    private List<String> countryNecessary = new ArrayList<String>();
-    private List<String> countryRecommended = new ArrayList<String>();
+    private ArrayList<ArrayList<String>> countryNecessary = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<String>> countryRecommended = new ArrayList<ArrayList<String>>();
     private RecyclerView rvCountry;
     private String enteredSearchCountry;
 
@@ -81,7 +82,7 @@ public class CountryActivity extends AppCompatActivity {
         });
     }
 
-    private static class CountryTask extends AsyncTask<Void, Object, List<Location>> {
+    private static class CountryTask extends AsyncTask<Void, Object, List<ImmunizationRecommendation>> {
 
         private WeakReference<CountryActivity> activityReference;
         private CountryActivity activity;
@@ -93,25 +94,76 @@ public class CountryActivity extends AppCompatActivity {
         }
         
         @Override
-        protected List<Location> doInBackground(Void... voids) {
+        protected List<ImmunizationRecommendation> doInBackground(Void... voids) {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
             //fix so it shows the country you searched for
-            List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
+            //List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
+            List<ImmunizationRecommendation> listRecommendations = gcm.getRecommendationsTest();
 
-            return listCountries;
+            return listRecommendations;
         }
         @Override
-        protected void onPostExecute(List<Location> locations) {
+        protected void onPostExecute(List<ImmunizationRecommendation> recommendations) {
 
             activity.countryName.clear();
             activity.countryNecessary.clear();
             activity.countryRecommended.clear();
 
-            for (Location location : locations) {
-                activity.countryName.add(location.getName());
-                activity.countryNecessary.add("test");
-                activity.countryRecommended.add("test");
+
+            for (ImmunizationRecommendation recommendation : recommendations) {
+
+                if (recommendation.getExtension().size() > 0){
+                    activity.countryName.add(recommendation.getExtension().get(0).getValue().toString());
+                }
+                ArrayList<String> temp = new ArrayList<>();
+                ArrayList<String> temp1 = new ArrayList<>();
+
+                for (int i = 0; i < recommendation.getRecommendation().size(); i++){
+                    if (recommendation.getRecommendation().get(i).hasDescription()){
+                        temp.add(recommendation.getRecommendation().get(i).getVaccineCode().get(0).getText() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                        activity.countryRecommended.add(temp);
+                    }else if (!recommendation.getRecommendation().get(i).hasDescription()){
+                        temp1.add(recommendation.getRecommendation().get(i).getVaccineCode().toString());
+                        activity.countryNecessary.add(temp1);
+                    }
+                }
+            }
+            new CountryActivity.CountryTask1(activity).execute();
+
+        }
+    }
+
+    private static class CountryTask1 extends AsyncTask<Void, Object, List<String>> {
+        private WeakReference<CountryActivity> activityReference;
+
+
+        CountryTask1(CountryActivity context) {
+            activityReference = new WeakReference<>(context);
+        }
+
+        @Override
+        protected List<String> doInBackground(Void... voids) {
+            VaccineFhirHelper gcm = new VaccineFhirHelper();
+            CountryActivity activity = activityReference.get();
+
+
+            //return list;
+            for(int i =0 ; i < activity.countryName.size(); i++) {
+                if (activity.countryName.get(i) != null){
+                    //activity.countryName.set(i,gcm.getLocation(activity.countryName.get(i)).getName());
+                }
+            }
+
+            return activity.countryName;
+        }
+
+        @Override
+        protected void onPostExecute(List<String> countryList) {
+            CountryActivity activity = activityReference.get();
+
+            for (String country : countryList) {
+                System.out.println(country);
             }
 
             activity.rvCountry = activity.findViewById(R.id.rvCountry);
