@@ -106,7 +106,11 @@ public class VaccineActivity extends AppCompatActivity {
                 activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
-                activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                if (vaccine.getPerformer().size() > 0){
+                    activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                }else {
+                    activity.vaccinePerformer.add("Unknown");
+                }
                 if (vaccine.getProtocolApplied().size() > 0) {
                     activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberStringType().toString());
                     activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesStringType().toString());

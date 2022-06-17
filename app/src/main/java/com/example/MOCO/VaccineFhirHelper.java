@@ -61,6 +61,15 @@ public class VaccineFhirHelper {
             return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
         }
 
+    public List<Observation> getAllTiters() {
+        // Invoke the client
+        Bundle bundle = client.search().forResource(Observation.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
+    }
+
         public List<Location> getLocations(String country){
             Bundle bundle = client.search().forResource(Location.class)
                     .where(new TokenClientParam("name").exactly().code(country))
