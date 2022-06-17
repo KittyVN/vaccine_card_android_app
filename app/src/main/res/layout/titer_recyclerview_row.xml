@@ -19,20 +19,19 @@
 
             <TextView
                 android:id="@+id/tvTypTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Typ"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
+                android:text="Type"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/recyclerHead" />
 
             <TextView
                 android:id="@+id/tvTyp"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTypTitle" />
 
@@ -40,28 +39,32 @@
                 android:id="@+id/tvLaborTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Labor"
-                android:textStyle="bold"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Laboratory"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTyp" />
 
             <TextView
                 android:id="@+id/tvLabor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Text"
-                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLaborTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/tvLaborTitle"
+                style="@style/recyclerText" />
 
             <TextView
                 android:id="@+id/tvDateTiterTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Datum"
-                android:textStyle="bold"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLabor" />
 
@@ -69,8 +72,10 @@
                 android:id="@+id/tvDateTiter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDateTiterTitle" />
 
@@ -78,18 +83,23 @@
                 android:id="@+id/tvTiterValueTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Messung"
-                android:textStyle="bold"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Value"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvTiterValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:text="Text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvTiterValueTitle" />
 
