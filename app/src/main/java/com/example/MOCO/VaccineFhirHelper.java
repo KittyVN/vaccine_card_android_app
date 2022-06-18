@@ -23,7 +23,8 @@ public class VaccineFhirHelper {
         private String url2 = "https://hapi.fhir.org/baseR4";
         private String url3 = "http://localhost:8080/fhir";
         private String url4 = "https://spark.incendi.no/fhir";
-        private String url1 = "https://sqlonfhir-r4.azurewebsites.net/fhir";
+        private String url5 = "https://sqlonfhir-r4.azurewebsites.net/fhir";
+        private String url1 = "https://server.fire.ly/r4";
 
         private String org = "691117c307504e6e8428e8ad4520bcf6";
         private String patient ="f21ffe610a074c679c417e10950fd633";
@@ -78,6 +79,14 @@ public class VaccineFhirHelper {
 
     public List<Observation> getAllTiters() {
         // Invoke the client
+        Bundle bundle = client.search().forResource(Observation.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
+    }
+
+    public List<Observation> getTiterTest() {
         Bundle bundle = client.search().forResource(Observation.class)
                 .prettyPrint()
                 .returnBundle(Bundle.class)
