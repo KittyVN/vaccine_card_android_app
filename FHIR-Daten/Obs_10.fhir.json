@@ -5,6 +5,7 @@
         "reference": "Patient/100",
         "display": "Stepfan Graf - m"
     },
+    "status": "final",
     "code": {
         "coding": [
             {
