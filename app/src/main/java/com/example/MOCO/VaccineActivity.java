@@ -81,18 +81,9 @@ public class VaccineActivity extends AppCompatActivity {
         @Override
         protected List<Immunization> doInBackground(Void... voids) {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
-            //List<Patient> list = new ArrayList<Patient>();
-            //list.add(gcm.getExamplePatient());
 
             //return list;
-            List<Immunization> listVaccines = gcm.getAllVacciness();
-
-
-            // IParser parser = gcm.ctx.newJsonParser();
-            // for (Immunization vaccine : listVaccines) {
-            //    Immunization imm = parser.parseResource(Immunization.class, listVaccines.get(0).toString());
-            //}
-
+            List<Immunization> listVaccines = gcm.getVaccinesTest();
 
             return listVaccines;
         }
@@ -101,8 +92,7 @@ public class VaccineActivity extends AppCompatActivity {
             VaccineActivity activity = activityReference.get();
 
             for (Immunization vaccine : vaccines) {
-                //b.append(vaccine.getText().getDiv().getValueAsString()).append('\n');
-                activity.vaccineKrankheit.add(vaccine.getVaccineCode().getText());
+                activity.vaccineKrankheit.add(vaccine.getVaccineCode().getCoding().get(0).getDisplay());
                 activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
@@ -112,31 +102,18 @@ public class VaccineActivity extends AppCompatActivity {
                     activity.vaccinePerformer.add("Unknown");
                 }
                 if (vaccine.getProtocolApplied().size() > 0) {
-                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberStringType().toString());
-                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesStringType().toString());
+                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberPositiveIntType().asStringValue());
+                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesPositiveIntType().asStringValue());
                 }else {
                     activity.vaccineDoseNumber.add("Unknown");
                     activity.vaccineDoseNumberTotal.add("Unknown");
                 }
-
-                /*  Could be usefull if we want to use Protocol applied
-                if (vaccine.getProtocolApplied().size() > 0){
-                    activity.vaccineKrankheit.add(vaccine.getProtocolApplied().get(0).getTargetDisease().toString());
-                }else {
-                    activity.vaccineKrankheit.add("");
-                }*/
             }
             System.out.println(activity.vaccineKrankheit);
 
             //get the references
             new VaccineTask1(activity).execute();
 
-
-            //activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
-
-            //VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber);
-            //activity.rvVaccine.setAdapter(vacAdapter);
-            //activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
     }
 
@@ -154,8 +131,6 @@ public class VaccineActivity extends AppCompatActivity {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
             VaccineActivity activity = activityReference.get();
 
-            //List<Patient> list = new ArrayList<Patient>();
-            //list.add(gcm.getExamplePatient());
 
             //return list;
             for(int i =0 ; i < activity.vaccineHersteller.size(); i++) {

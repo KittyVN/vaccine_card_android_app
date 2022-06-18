@@ -27,7 +27,12 @@ public class VaccineFhirHelper {
 
         private String org = "691117c307504e6e8428e8ad4520bcf6";
         private String patient ="f21ffe610a074c679c417e10950fd633";
-
+/*
+   org100 = b6eba60b76774ca4942809e03bc0787e
+   org200 = 19a850afb1d24902ba94d940408ed713
+   org300 = f752a54b44654a82a0d805b293439a7b
+   patient = bce2ef51d0804acc98cf655a5863edf4
+    */
         public VaccineFhirHelper() {
             ctx = FhirContext.forR4();
             client = ctx.newRestfulGenericClient(url1);
@@ -46,6 +51,15 @@ public class VaccineFhirHelper {
     public List<Immunization> getAllVacciness() {
         // Invoke the client
         Bundle bundle = client.search().forResource(Immunization.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, Immunization.class);
+    }
+
+    public List<Immunization> getVaccinesTest(){
+        Bundle bundle = client.search().forResource(Immunization.class)
+                .where(new TokenClientParam("_id").exactly().code("8f183cff4b5c4c22b7806e3864c6ea38"))
                 .prettyPrint()
                 .returnBundle(Bundle.class)
                 .execute();
@@ -90,7 +104,7 @@ public class VaccineFhirHelper {
 
     public List<ImmunizationRecommendation> getRecommendationsTest(){
         Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
-                .where(new TokenClientParam("_id").exactly().code("6b7dfab694fc4cad8e697b5bc1902b3a"))
+                .where(new TokenClientParam("_id").exactly().code("b1648572fb3b42498e94ccfbb6790426"))
                 .prettyPrint()
                 .returnBundle(Bundle.class)
                 .execute();
@@ -98,8 +112,8 @@ public class VaccineFhirHelper {
     }
 
 
-        public Organization getOrganization(String ref){
-        return client.read().resource(Organization.class).withId(ref).execute();
+    public Organization getOrganization(String ref){
+            return client.read().resource(Organization.class).withId(ref).execute();
         }
 
     public Location getLocation(String ref){

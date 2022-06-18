@@ -98,7 +98,7 @@ public class TiterActivity extends AppCompatActivity {
 
 
                 if (titer.getValue() != null && titer.getValue().fhirType() == "Quantity"){
-                    activity.titerValue.add(titer.getValueQuantity().getValue().toString() + " " + titer.getValueQuantity().getCode());
+                    activity.titerValue.add(titer.getValueQuantity().getValue().toString() + " " + titer.getValueQuantity().getUnit());
                 }else if (titer.getValue() != null){
                     activity.titerValue.add(titer.getValue().fhirType());
                 }else {
