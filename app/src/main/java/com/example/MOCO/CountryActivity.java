@@ -121,10 +121,10 @@ public class CountryActivity extends AppCompatActivity {
 
                 for (int i = 0; i < recommendation.getRecommendation().size(); i++){
                     if (recommendation.getRecommendation().get(i).hasDescription()){
-                        temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getText() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                        temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
                         activity.countryRecommended.add(temp);
                     }else if (!recommendation.getRecommendation().get(i).hasDescription()){
-                        temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getText());
+                        temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                         activity.countryNecessary.add(temp1);
                     }
                 }
