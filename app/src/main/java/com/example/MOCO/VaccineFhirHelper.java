@@ -98,8 +98,8 @@ public class VaccineFhirHelper {
     }
 
 
-        public Organization getOrganization(String ref){
-        return client.read().resource(Organization.class).withId(ref).execute();
+    public Organization getOrganization(String ref){
+            return client.read().resource(Organization.class).withId(ref).execute();
         }
 
     public Location getLocation(String ref){
