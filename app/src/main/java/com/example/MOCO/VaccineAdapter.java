@@ -26,7 +26,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
     private List<String> vaccineDoseNumberTotal = new ArrayList<String>();
     private Context ctx;
     private ProgressBar spinner;
-    private WebView webview;
 
 public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3, List<String> s4, List<String> s5,List<String> s6,List<String> s7){
  ctx = ct;
@@ -45,12 +44,12 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
     public VaccineViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
         View view = inflater.inflate(R.layout.vaccine_recyclerview_row,viewGroup,false);
-        webview.setVisibility(webview.INVISIBLE);
         return new VaccineViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder vaccineViewHolder, int i) {
+
         vaccineViewHolder.krankheit.setText(vaccineKrankheit.get(i));
         vaccineViewHolder.hersteller.setText(vaccineHersteller.get(i));
         vaccineViewHolder.date.setText(vaccineDate.get(i));

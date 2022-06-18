@@ -32,8 +32,12 @@
                 android:id="@+id/tvKrankheit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:layout_marginTop="4dp"
+                android:text="Text"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvKrankheitTitle" />
 
@@ -51,8 +55,12 @@
                 android:id="@+id/tvHersteller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:layout_marginTop="4dp"
+                android:text="Text"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvHerstellerTitle" />
 
@@ -70,8 +78,12 @@
                 android:id="@+id/tvPerformer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:layout_marginTop="8dp"
+                android:text="Text"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerformerTitle" />
 
@@ -89,8 +101,11 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Text"
                 android:layout_margin="5dp"
+                android:text="Text"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDateTitle" />
 
