@@ -101,26 +101,22 @@ public class VaccineActivity extends AppCompatActivity {
             VaccineActivity activity = activityReference.get();
 
             for (Immunization vaccine : vaccines) {
-                //b.append(vaccine.getText().getDiv().getValueAsString()).append('\n');
                 activity.vaccineKrankheit.add(vaccine.getVaccineCode().getText());
                 activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
-                activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                if (vaccine.getPerformer().size() > 0){
+                    activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                }else {
+                    activity.vaccinePerformer.add("Unknown");
+                }
                 if (vaccine.getProtocolApplied().size() > 0) {
-                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberStringType().toString());
-                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesStringType().toString());
+                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberPositiveIntType().toString());
+                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesPositiveIntType().toString());
                 }else {
                     activity.vaccineDoseNumber.add("Unknown");
                     activity.vaccineDoseNumberTotal.add("Unknown");
                 }
-
-                /*  Could be usefull if we want to use Protocol applied
-                if (vaccine.getProtocolApplied().size() > 0){
-                    activity.vaccineKrankheit.add(vaccine.getProtocolApplied().get(0).getTargetDisease().toString());
-                }else {
-                    activity.vaccineKrankheit.add("");
-                }*/
             }
             System.out.println(activity.vaccineKrankheit);
 

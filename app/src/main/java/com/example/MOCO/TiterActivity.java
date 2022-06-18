@@ -11,8 +11,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
+import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.Observation;
+import org.hl7.fhir.r4.model.Type;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -78,7 +80,7 @@ public class TiterActivity extends AppCompatActivity {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
             //return list;
-            List<Observation> listTiters = gcm.getTiters();
+            List<Observation> listTiters = gcm.getAllTiters();
 
             return listTiters;
         }
@@ -88,9 +90,27 @@ public class TiterActivity extends AppCompatActivity {
 
             for (Observation titer : titers) {
                 activity.titerTyp.add(titer.getCode().getText());
-                activity.titerLabor.add(titer.getPerformerFirstRep().getReference());
-                activity.titerDate.add(titer.getEffectiveDateTimeType().asStringValue());
-                activity.titerValue.add(titer.getValueIntegerType().asStringValue());
+                if (titer.getEffective() != null && titer.getEffective().fhirType() == "dateTime"){
+                    activity.titerDate.add(titer.getEffectiveDateTimeType().asStringValue());
+                }else if (titer.getEffective() != null && titer.getEffective().fhirType() == "Period"){
+                    activity.titerDate.add(titer.getEffectivePeriod().getEnd().toString());
+                }else activity.titerDate.add("empty");
+
+
+                if (titer.getValue() != null && titer.getValue().fhirType() == "Quantity"){
+                    activity.titerValue.add(titer.getValueQuantity().getValue().toString() + " " + titer.getValueQuantity().getUnit());
+                }else if (titer.getValue() != null){
+                    activity.titerValue.add(titer.getValue().fhirType());
+                }else {
+                    activity.titerValue.add("no value");
+                }
+
+                if (titer.getPerformer().size() > 0){
+                    activity.titerLabor.add(titer.getPerformer().get(0).getDisplay());
+                }else {
+                    activity.titerLabor.add("Unknown");
+                }
+
             }
             activity.rvTiter = activity.findViewById(R.id.rvTiter);
 

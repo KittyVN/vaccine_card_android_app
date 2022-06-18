@@ -13,12 +13,14 @@ import java.util.List;
 
 public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder>{
     private List<String> countryName = new ArrayList<String>();
-    private List<String> countryNecessary = new ArrayList<String>();
-    private List<String> countryRecommended = new ArrayList<String>();
+    private ArrayList<ArrayList<String>> countryNecessary = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<String>> countryRecommended = new ArrayList<ArrayList<String>>();
+    private String recommended = "";
+    private String neccessary = "";
 
     private Context ctx;
 
-    public CountryAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3){
+    public CountryAdapter(Context ct, List<String> s1, ArrayList<ArrayList<String>> s2, ArrayList<ArrayList<String>> s3){
         ctx = ct;
         countryName = s1;
         countryNecessary = s2;
@@ -37,8 +39,24 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     @Override
     public void onBindViewHolder(@NonNull CountryViewHolder countryViewHolder, int i) {
         countryViewHolder.country.setText(countryName.get(i));
-        countryViewHolder.necessary.setText(countryNecessary.get(i));
-        countryViewHolder.recommended.setText(countryRecommended.get(i));
+
+        if (countryRecommended.get(i).size() > 0){
+            for (int x = 0; x < countryRecommended.get(i).size(); x++){
+                recommended = recommended + countryRecommended.get(i).get(x) + "\n";
+            }
+        }else {
+            recommended = "none";
+        }
+        if (countryNecessary.get(i).size() > 0){
+            for (int x = 0; x < countryNecessary.get(i).size(); x++){
+                neccessary = neccessary + countryNecessary.get(i).get(x) + "\n";
+            }
+        }else {
+            neccessary = "none";
+        }
+
+        countryViewHolder.recommended.setText(recommended);
+        countryViewHolder.necessary.setText(neccessary);
     }
 
     @Override

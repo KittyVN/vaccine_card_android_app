@@ -2,6 +2,7 @@ package com.example.MOCO;
 
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Immunization;
+import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Organization;
@@ -61,6 +62,15 @@ public class VaccineFhirHelper {
             return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
         }
 
+    public List<Observation> getAllTiters() {
+        // Invoke the client
+        Bundle bundle = client.search().forResource(Observation.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, Observation.class);
+    }
+
         public List<Location> getLocations(String country){
             Bundle bundle = client.search().forResource(Location.class)
                     .where(new TokenClientParam("name").exactly().code(country))
@@ -70,10 +80,31 @@ public class VaccineFhirHelper {
             return BundleUtil.toListOfResourcesOfType(ctx, bundle, Location.class);
         }
 
+    public List<ImmunizationRecommendation> getRecommendations(){
+        Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
+    }
 
-        public Organization getOrganization(String ref){
-        return client.read().resource(Organization.class).withId(ref).execute();
+    public List<ImmunizationRecommendation> getRecommendationsTest(){
+        Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
+                .where(new TokenClientParam("_id").exactly().code("6b7dfab694fc4cad8e697b5bc1902b3a"))
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
+    }
+
+
+    public Organization getOrganization(String ref){
+            return client.read().resource(Organization.class).withId(ref).execute();
         }
+
+    public Location getLocation(String ref){
+        return client.read().resource(Location.class).withId(ref).execute();
+    }
 
 
         public Patient getExamplePatient(){
