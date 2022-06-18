@@ -6,32 +6,45 @@
     },
     "recommendation": [
         {
-            "vaccineCode": [
-                {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/sid/cvx",
-                            "code": "01"
-                        }
-                    ]
-                }
-            ],
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "397430003",
+                    "display": "Diphtheriae"
+                  }
+                ]
+              },
 
             "forecastStatus": {
                 "text": "due"
             }
         },
         {
-            "vaccineCode": [
-                {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/sid/cvx",
-                            "code": "43"
-                        }
-                    ]
-                }
-            ],
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "76902006",
+                    "display": "Tetanus"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "66071002",
+                    "display": "Viral hepatitis type B"
+                  }
+                ]
+              },
 
             "forecastStatus": {
                 "text": "due"
@@ -40,16 +53,15 @@
             "description": "Close sozial contacts or long term visit"
         },
         {
-            "vaccineCode": [
-                {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/sid/cvx",
-                            "code": "03"
-                        }
-                    ]
-                }
-            ],
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "14189004",
+                    "display": "Measles"
+                  }
+                ]
+              },
 
             "forecastStatus": {
                 "text": "due"
@@ -58,16 +70,15 @@
             "description": "Only for children"
         },
         {
-            "vaccineCode": [
-                {
-                    "coding": [
-                        {
-                            "system": "http://hl7.org/fhir/sid/cvx",
-                            "code": "77"
-                        }
-                    ]
-                }
-            ],
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "45170000",
+                    "display": "tick-borne encephalitis"
+                  }
+                ]
+              },
 
             "forecastStatus": {
                 "text": "due"
@@ -78,10 +89,8 @@
     ],
     "extension": [
         {
-            "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusLocation",
-            "valueReference": {
-                "reference": "Location/101"
-            }
+            "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusCountryName",
+            "valueString": "Norway"
         }
     ]
 }
