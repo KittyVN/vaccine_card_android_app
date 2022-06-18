@@ -49,7 +49,6 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
 
     @Override
     public void onBindViewHolder(@NonNull VaccineViewHolder vaccineViewHolder, int i) {
-
         vaccineViewHolder.krankheit.setText(vaccineKrankheit.get(i));
         vaccineViewHolder.hersteller.setText(vaccineHersteller.get(i));
         vaccineViewHolder.date.setText(vaccineDate.get(i));
