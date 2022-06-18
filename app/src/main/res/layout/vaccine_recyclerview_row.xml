@@ -22,12 +22,9 @@
                 android:id="@+id/tvKrankheitTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Vaccine"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="12sp"
+                android:text="Impfung"
                 android:textStyle="bold"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,23 +33,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                style="@style/recyclerText"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvKrankheitTitle" />
 
             <TextView
                 android:id="@+id/tvHerstellerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Hersteller"
+                android:textStyle="bold"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvKrankheit"
-                style="@style/recyclerHead" />
+                app:layout_constraintTop_toBottomOf="@+id/tvKrankheit" />
 
             <TextView
                 android:id="@+id/tvHersteller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Text"
-                style="@style/recyclerText"                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvHerstellerTitle" />
 
             <TextView
@@ -60,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Performer"
-                style="@style/recyclerHead"
+                android:textStyle="bold"
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvHersteller" />
@@ -69,9 +70,8 @@
                 android:id="@+id/tvPerformer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-light"
                 android:text="Text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"                android:layout_margin="5dp"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerformerTitle" />
 
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Datum"
-                style="@style/recyclerHead"
+                android:textStyle="bold"
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerformer" />
@@ -89,9 +89,8 @@
                 android:id="@+id/tvDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-light"
                 android:text="Text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"                android:layout_margin="5dp"
+                android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDateTitle" />
 
@@ -109,9 +108,8 @@
                 android:id="@+id/tvLotNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-light"
                 android:text="Text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"                android:layout_margin="5dp"
+                android:layout_margin="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvLotNumberTitle" />
 
@@ -129,9 +127,8 @@
                 android:id="@+id/tvDoses"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-light"
                 android:text="Text"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"                android:layout_margin="5dp"
+                android:layout_margin="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDosesTitle" />
 
