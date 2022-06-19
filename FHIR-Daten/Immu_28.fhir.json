@@ -13,8 +13,8 @@
     "patient": {
         "reference": "Patient/1"
     },
-    "occurrenceDateTime": "1992-11-18",
-    "expirationDate": "2002-11-09",
+    "occurrenceDateTime": "2005-07-20",
+    "expirationDate": "2015-07-20",
     "performer": [
         {
             "actor": {
@@ -23,7 +23,7 @@
             }
         }
     ],
-    "lotNumber": "BC3521325FF548",
+    "lotNumber": "NHF1276328",
     "manufacturer": {
         "reference": "Organization/4",
         "display": "Vaccion-manufacturer 1"
@@ -77,8 +77,8 @@
                     ]
                 }
             ],
-            "doseNumberPositiveInt": 3,
-            "seriesDosesPositiveInt": 3
+            "doseNumberPositiveInt": 4,
+            "seriesDosesPositiveInt": 0
         }
     ]
 }

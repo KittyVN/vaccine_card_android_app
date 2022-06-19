@@ -13,7 +13,7 @@
     "patient": {
         "reference": "Patient/1"
     },
-    "occurrenceDateTime": "1992-03-09",
+    "occurrenceDateTime": "1992-04-06",
     "expirationDate": "1993-03-09",
     "performer": [
         {
@@ -23,7 +23,7 @@
             }
         }
     ],
-    "lotNumber": "BFKD125168545",
+    "lotNumber": "BCD1354674",
     "manufacturer": {
         "reference": "Organization/7",
         "display": "Vaccion-manufacturer 2"
@@ -41,7 +41,7 @@
                     ]
                 }
             ],
-            "doseNumberPositiveInt": 1,
+            "doseNumberPositiveInt": 2,
             "seriesDosesPositiveInt": 3
         }
     ]

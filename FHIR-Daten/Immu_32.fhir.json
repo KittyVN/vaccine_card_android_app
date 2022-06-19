@@ -5,25 +5,25 @@
         "coding": [
             {
                 "system": "http://hl7.org/fhir/sid/cvx",
-                "code": "122",
-                "display": "rotavirus vaccine"
+                "code": "77",
+                "display": "tick-borne encephalitis vaccine"
             }
         ]
     },
     "patient": {
         "reference": "Patient/1"
     },
-    "occurrenceDateTime": "1992-03-09",
-    "expirationDate": "1993-03-09",
+    "occurrenceDateTime": "2020-10-19",
+    "expirationDate": "2025-01-12",
     "performer": [
         {
             "actor": {
-                "reference": "Organization/2",
-                "display": "Stadt Wien - Impfaktion"
+                "reference": "Organization/5",
+                "display": "Vaccination-Center"
             }
         }
     ],
-    "lotNumber": "BFKD125168545",
+    "lotNumber": "KNNF2109875",
     "manufacturer": {
         "reference": "Organization/7",
         "display": "Vaccion-manufacturer 2"
@@ -35,14 +35,14 @@
                     "coding": [
                         {
                             "system": "http://snomed.info/sct",
-                            "code": "186150001",
-                            "display": "rotavirus"
+                            "code": "45170000",
+                            "display": "tick-borne encephalitis"
                         }
                     ]
                 }
             ],
-            "doseNumberPositiveInt": 1,
-            "seriesDosesPositiveInt": 3
+            "doseNumberPositiveInt": 8,
+            "seriesDosesPositiveInt": 0
         }
     ]
 }
