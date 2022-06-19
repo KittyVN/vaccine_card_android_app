@@ -2,7 +2,7 @@
     "resourceType": "ImmunizationRecommendation",
     "date": "2022-06-15",
     "patient": {
-        "reference": "Patient/100"
+        "reference": "Patient/1"
     },
     "recommendation": [
         {

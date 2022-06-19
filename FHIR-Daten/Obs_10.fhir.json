@@ -23,7 +23,8 @@
         }
     ],
     "valueQuantity": {
-        "unit": "BAU/ml",
+        "system": "http://unitsofmeasure.org",
+        "code": "BAU/ml",
         "value": 108900
     }
 }

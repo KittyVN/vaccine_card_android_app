@@ -1,0 +1,84 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "120",
+                "display": "diphtheria, tetanus toxoids and acellular pertussis vaccine, Haemophilus influenzae type b conjugate, and poliovirus vaccine, inactivated (DTaP-Hib-IPV)"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1992-11-18",
+    "expirationDate": "2002-11-09",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "BCD127548",
+    "manufacturer": {
+        "reference": "Organization/4",
+        "display": "Vaccion-manufacturer 1"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "397430003",
+                            "display": "Diphtheriae"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "76902006",
+                            "display": "Tetanus"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "398102009",
+                            "display": "Polio"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "70036007",
+                            "display": "Haemophilus influenzae type b"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "27836007",
+                            "display": "Pertussis"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 3,
+            "seriesDosesPositiveInt": 3
+        }
+    ]
+}

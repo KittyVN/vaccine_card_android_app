@@ -5,27 +5,28 @@
         "coding": [
             {
                 "system": "http://hl7.org/fhir/sid/cvx",
-                "code": "01",
-                "display": "diphtheria, tetanus toxoids and pertussis vaccine"
+                "code": "120",
+                "display": "diphtheria, tetanus toxoids and acellular pertussis vaccine, Haemophilus influenzae type b conjugate, and poliovirus vaccine, inactivated (DTaP-Hib-IPV)"
             }
         ]
     },
     "patient": {
-        "reference": "Patient/100"
+        "reference": "Patient/1"
     },
-    "occurrenceDateTime": "1992-03-09",
-    "expirationDate": "1993-03-09",
+    "occurrenceDateTime": "1992-05-18",
+    "expirationDate": "1993-05-09",
     "performer": [
         {
             "actor": {
-                "reference": "Organization/100",
+                "reference": "Organization/2",
                 "display": "Stadt Wien - Impfaktion"
             }
         }
     ],
     "lotNumber": "BCD127548",
     "manufacturer": {
-        "reference": "Organization/300"
+        "reference": "Organization/4",
+        "display": "Vaccion-manufacturer 1"
     },
     "protocolApplied": [
         {
@@ -52,13 +53,31 @@
                     "coding": [
                         {
                             "system": "http://snomed.info/sct",
+                            "code": "398102009",
+                            "display": "Polio"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "70036007",
+                            "display": "Haemophilus influenzae type b"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
                             "code": "27836007",
                             "display": "Pertussis"
                         }
                     ]
                 }
             ],
-            "doseNumberPositiveInt": 1,
+            "doseNumberPositiveInt": 2,
             "seriesDosesPositiveInt": 3
         }
     ]
