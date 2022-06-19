@@ -8,12 +8,14 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Immunization;
@@ -36,7 +38,11 @@ public class CountryActivity extends AppCompatActivity {
     private RecyclerView rvRecommendedCountry;
     private TextView tvCountryName;
     private String enteredSearchCountry;
-
+    private TextView tvRecommendedHint;
+    private TextView tvNecessaryHint;
+    private ImageView ivGlobe;
+    private CardView cvNecessary;
+    private CardView cvRecommended;
 
 
     @Override
@@ -131,27 +137,41 @@ public class CountryActivity extends AppCompatActivity {
                     }
                 }
             }
-           //new CountryActivity.CountryTask1(activity).execute();
             CountryNecessaryAdapter NAdapter;
             CountryRecommendedAdapter RAdapter;
 
+            //set visibility of of hints above recyclers
+            activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
+            activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
+            activity.tvRecommendedHint.setVisibility(View.VISIBLE);
+            activity.tvNecessaryHint.setVisibility(View.VISIBLE);
 
-                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(0));
-                    RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(0));
+            activity.cvNecessary = activity.findViewById(R.id.cvNecessary);
+            activity.cvRecommended = activity.findViewById(R.id.cvRecommended);
 
-                    activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
-                    activity.tvCountryName.setText(activity.countryName.get(0));
+            activity.cvNecessary.setVisibility(View.VISIBLE);
+            activity.cvRecommended.setVisibility(View.VISIBLE);
 
-                    System.out.println("testout");
 
-                    activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-                    activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+            activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
+            activity.ivGlobe.setVisibility(View.INVISIBLE);
 
-                    activity.rvNecessaryCountry.setAdapter(NAdapter);
-                    activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(0));
+            RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(0));
 
-                    activity.rvRecommendedCountry.setAdapter(RAdapter);
-                    activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
+            activity.tvCountryName.setText(activity.countryName.get(0));
+
+            System.out.println("testout");
+
+            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+
+            activity.rvNecessaryCountry.setAdapter(NAdapter);
+            activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
+            activity.rvRecommendedCountry.setAdapter(RAdapter);
+            activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
 
 
         }

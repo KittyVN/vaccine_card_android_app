@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CountryActivity">
+    tools:context=".CountryActivity"
+    >
 
     <TextView
         android:id="@+id/tvCountry_Title"
@@ -13,12 +14,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="@string/tvHome_reisen"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="35sp" />
 
+    <ImageView
+        android:id="@+id/ivGlobe"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:srcCompat="@drawable/globe" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputCountryLayout"
@@ -53,6 +62,18 @@
         android:layout_marginTop="0dp"
         android:layout_marginBottom="-1dp" />-->
 
+    <TextView
+        android:id="@+id/tvCountryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputCountryLayout"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:layout_margin="12dp"
+        android:textSize="22sp" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -63,25 +84,80 @@
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:menu="@menu/bottom_navmenu" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvNecessaryCountry"
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvNecessary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textInputCountryLayout"
-        android:paddingTop="30dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="10dp"
+        android:layout_below="@+id/tvCountryName"
+        android:background="#FFFFFF"
+        android:visibility="invisible"
+        app:cardBackgroundColor="#8FD6D6D6">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvRecommendedCountry"
+        <TextView
+            android:id="@+id/tvNescessary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mandatory"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            android:layout_marginVertical="12dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:layout_marginLeft="12dp"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvNecessaryCountry"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="22dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvNescessary" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvRecommended"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rvNecessaryCountry" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_below="@+id/cvNecessary"
+        android:background="#FFFFFF"
+        app:cardBackgroundColor="#8FD6D6D6"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="invisible"
+        android:layout_marginTop="1dp"
+        >
 
-    <TextView
-        android:id="@+id/tvCountryName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textInputCountryLayout"
-        android:text="" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvRecommendedCountry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="22dp"
+            android:layout_below="@+id/tvRecommended" />
+
+
+        <TextView
+            android:visibility="invisible"
+            android:layout_marginVertical="12dp"
+            android:id="@+id/tvRecommended"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_below="@+id/rvNecessaryCountry"
+            android:text="Recommendations"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textSize="12sp"
+            android:layout_marginLeft="12dp"/>
+
+
+
+    </android.support.v7.widget.CardView>
+
+
 
 
 </RelativeLayout>
