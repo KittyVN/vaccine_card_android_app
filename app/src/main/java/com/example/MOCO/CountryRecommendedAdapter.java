@@ -13,13 +13,15 @@ import java.util.List;
 
 public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecommendedAdapter.CountryRecommendedViewHolder>{
     private ArrayList<String> countryRecommended = new ArrayList<>();
+    private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
     private String recommended = "";
 
     private Context ctx;
 
-    public CountryRecommendedAdapter(Context ct, ArrayList<String> s1){
+    public CountryRecommendedAdapter(Context ct, ArrayList<String> s1, ArrayList<Boolean> s2){
         ctx = ct;
         countryRecommended = s1;
+        countryRecommendedBoolean = s2;
     }
 
 
@@ -35,6 +37,11 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     @Override
     public void onBindViewHolder(@NonNull CountryRecommendedViewHolder countryViewHolder, int i) {
         countryViewHolder.recommended.setText(countryRecommended.get(i));
+        if (countryRecommendedBoolean.get(i) == true){
+            countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
+        }else{
+            countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);
+        }
     }
 
     @Override
@@ -47,13 +54,14 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     }
 
     public class CountryRecommendedViewHolder extends RecyclerView.ViewHolder{
-        TextView recommended;
+        TextView recommended,trafficBoolean;
 
 
         //zuordnung recycler
         public CountryRecommendedViewHolder(@NonNull View itemView) {
             super(itemView);
             recommended = itemView.findViewById(R.id.tvRecommendedVaccines);
+            trafficBoolean = itemView.findViewById(R.id.tvTrafficLightRecommended);
         }
     }
 
