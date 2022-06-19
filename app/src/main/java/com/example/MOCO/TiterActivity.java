@@ -89,13 +89,12 @@ public class TiterActivity extends AppCompatActivity {
             TiterActivity activity = activityReference.get();
 
             for (Observation titer : titers) {
-                activity.titerTyp.add(titer.getCode().getText());
+                activity.titerTyp.add(titer.getCode().getCoding().get(0).getDisplay());
                 if (titer.getEffective() != null && titer.getEffective().fhirType() == "dateTime"){
                     activity.titerDate.add(titer.getEffectiveDateTimeType().asStringValue());
                 }else if (titer.getEffective() != null && titer.getEffective().fhirType() == "Period"){
                     activity.titerDate.add(titer.getEffectivePeriod().getEnd().toString());
                 }else activity.titerDate.add("empty");
-
 
                 if (titer.getValue() != null && titer.getValue().fhirType() == "Quantity"){
                     activity.titerValue.add(titer.getValueQuantity().getValue().toString() + " " + titer.getValueQuantity().getUnit());
