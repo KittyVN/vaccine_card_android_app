@@ -27,15 +27,15 @@
                 android:layout_margin="5dp"
                 android:text="Text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/tvTrafficLight"
-                app:layout_constraintStart_toEndOf="@+id/tvTrafficLight"
+                app:layout_constraintLeft_toRightOf="@+id/tvTrafficLightNecessary"
+                app:layout_constraintStart_toEndOf="@+id/tvTrafficLightNecessary"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvTrafficLight"
+                android:id="@+id/tvTrafficLightNecessary"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:foreground="@android:color/holo_red_light"
+                android:background="@color/colorRedTraffic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

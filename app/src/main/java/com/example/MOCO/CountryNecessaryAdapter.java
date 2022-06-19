@@ -1,7 +1,9 @@
 package com.example.MOCO;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +15,13 @@ import java.util.List;
 
 public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessaryAdapter.CountryNecessaryViewHolder>{
     private ArrayList<String> countryNecessary = new ArrayList<>();
+    private ArrayList<Boolean> countryNecessaryBoolean = new ArrayList<>();
     private Context ctx;
 
-    public CountryNecessaryAdapter(Context ct, ArrayList<String> s1){
+    public CountryNecessaryAdapter(Context ct, ArrayList<String> s1, ArrayList<Boolean> s2){
         ctx = ct;
         countryNecessary = s1;
+        countryNecessaryBoolean = s2;
     }
 
 
@@ -32,6 +36,11 @@ public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessa
     @Override
     public void onBindViewHolder(@NonNull CountryNecessaryViewHolder countryViewHolder, int i) {
         countryViewHolder.necessary.setText(countryNecessary.get(i));
+        if (countryNecessaryBoolean.get(i) == true){
+            countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
+        }else{
+            countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);
+        }
     }
 
     @Override
@@ -44,13 +53,14 @@ public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessa
     }
 
     public class CountryNecessaryViewHolder extends RecyclerView.ViewHolder{
-        TextView necessary;
+        TextView necessary, trafficBoolean;
 
 
         //zuordnung recycler
         public CountryNecessaryViewHolder(@NonNull View itemView) {
             super(itemView);
             necessary = itemView.findViewById(R.id.tvNecessaryVaccines);
+            trafficBoolean = itemView.findViewById(R.id.tvTrafficLightNecessary);
         }
     }
 

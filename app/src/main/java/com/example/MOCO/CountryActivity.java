@@ -32,8 +32,18 @@ public class CountryActivity extends AppCompatActivity {
     private Context ctx = this;
     private CountryActivity activity = this;
     private List<String> countryName = new ArrayList<String>();
-    private ArrayList<ArrayList<String>> countryNecessary = new ArrayList<ArrayList<String>>();
-    private ArrayList<ArrayList<String>> countryRecommended = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<String>> countryNecessary1 = new ArrayList<ArrayList<String>>();
+    private ArrayList<ArrayList<String>> countryRecommended1 = new ArrayList<ArrayList<String>>();
+
+    private ArrayList<String> countryNecessary = new ArrayList<>();
+    private ArrayList<String> countryRecommended = new ArrayList<>();
+
+    private List<String> allVaccineTargetDiseases = new ArrayList<String>();
+    private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
+    private ArrayList<Boolean> countryNecessaryBoolean = new ArrayList<>();
+    private ArrayList<String>  countryRecommendedWithoutDescription = new ArrayList<>();
+
+
     private RecyclerView rvNecessaryCountry;
     private RecyclerView rvRecommendedCountry;
     private TextView tvCountryName;
@@ -91,13 +101,13 @@ public class CountryActivity extends AppCompatActivity {
         });
     }
 
-    private static class CountryTask extends AsyncTask<Void, Object, List<ImmunizationRecommendation>> {
+    private static class CountryTask1 extends AsyncTask<Void, Object, List<ImmunizationRecommendation>> {
 
         private WeakReference<CountryActivity> activityReference;
         private CountryActivity activity;
 
         // only retain a weak reference to the activity
-        CountryTask(CountryActivity context) {
+        CountryTask1(CountryActivity context) {
             activityReference = new WeakReference<>(context);
             activity = activityReference.get();
         }
@@ -117,6 +127,7 @@ public class CountryActivity extends AppCompatActivity {
             activity.countryName.clear();
             activity.countryNecessary.clear();
             activity.countryRecommended.clear();
+            activity.countryRecommendedWithoutDescription.clear();
 
 
             for (ImmunizationRecommendation recommendation : recommendations) {
@@ -124,16 +135,19 @@ public class CountryActivity extends AppCompatActivity {
                 if (recommendation.getExtension().size() > 0){
                     activity.countryName.add(recommendation.getExtension().get(0).getValue().toString());
                 }
-                ArrayList<String> temp = new ArrayList<>();
-                ArrayList<String> temp1 = new ArrayList<>();
+                //ArrayList<String> temp = new ArrayList<>();
+                //ArrayList<String> temp1 = new ArrayList<>();
 
                 for (int i = 0; i < recommendation.getRecommendation().size(); i++){
                     if (recommendation.getRecommendation().get(i).hasDescription()){
-                        temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
-                        activity.countryRecommended.add(temp);
+                        //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                        //activity.countryRecommended.add(temp);
+                        activity.countryRecommended.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                        activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                     }else if (!recommendation.getRecommendation().get(i).hasDescription()){
-                        temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
-                        activity.countryNecessary.add(temp1);
+                        //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
+                        //activity.countryNecessary.add(temp1);
+                        activity.countryNecessary.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                     }
                 }
             }
@@ -156,8 +170,23 @@ public class CountryActivity extends AppCompatActivity {
             activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
             activity.ivGlobe.setVisibility(View.INVISIBLE);
 
-            NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(0));
-            RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(0));
+            for (int j = 0; j < activity.countryRecommendedWithoutDescription.size(); j++){
+                counter = 0;
+                for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
+                    if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
+                        counter = counter+1;
+                    }
+                }
+                if (counter>0){
+                    activity.countryRecommendedBoolean.add(true);
+                }else {
+                    activity.countryRecommendedBoolean.add(false);
+                }
+            }
+
+
+                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary,activity.countryNecessaryBoolean);
+            RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended,activity.countryRecommendedBoolean);
 
             activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
             activity.tvCountryName.setText(activity.countryName.get(0));
@@ -176,60 +205,39 @@ public class CountryActivity extends AppCompatActivity {
 
         }
     }
-/*
-    private static class CountryTask1 extends AsyncTask<Void, Object, List<String>> {
+
+    private static class CountryTask extends AsyncTask<Void, Object, List<Immunization>> {
         private WeakReference<CountryActivity> activityReference;
 
 
-        CountryTask1(CountryActivity context) {
+        CountryTask(CountryActivity context) {
             activityReference = new WeakReference<>(context);
         }
 
         @Override
-        protected List<String> doInBackground(Void... voids) {
+        protected List<Immunization> doInBackground(Void... voids) {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
             CountryActivity activity = activityReference.get();
 
-
             //return list;
-            for(int i =0 ; i < activity.countryName.size(); i++) {
-                if (activity.countryName.get(i) != null){
-                    //activity.countryName.set(i,gcm.getLocation(activity.countryName.get(i)).getName());
-                }
-            }
+            List<Immunization> listVaccines = gcm.getAllVacciness();
 
-            return activity.countryName;
+            return listVaccines;
         }
 
         @Override
-        protected void onPostExecute(List<String> countryList) {
+        protected void onPostExecute(List<Immunization> vaccines) {
             CountryActivity activity = activityReference.get();
-            CountryNecessaryAdapter NAdapter = null;
-            CountryRecommendedAdapter RAdapter = null;
 
-            for(int i = 0; i < activity.countryName.size(); i++) {
-                if(activity.countryName.get(i) == activity.enteredSearchCountry) {
-                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(i));
-                    RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(i));
-
-                    activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
-                    activity.tvCountryName.setText(activity.countryName.get(i));
-
-                    System.out.println("testout");
-
-                    activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-                    activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
-
-                    activity.rvNecessaryCountry.setAdapter(NAdapter);
-                    activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
-
-                    activity.rvRecommendedCountry.setAdapter(RAdapter);
-                    activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            for (Immunization vaccine : vaccines) {
+                for (int i = 0; i < vaccine.getProtocolApplied().get(0).getTargetDisease().size(); i++){
+                    activity.allVaccineTargetDiseases.add(vaccine.getProtocolApplied().get(0).getTargetDisease().get(i).getCoding().get(0).getDisplay());
                 }
             }
 
+            new CountryActivity.CountryTask1(activity).execute();
 
         }
     }
-*/
+
 }
