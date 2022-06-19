@@ -2,7 +2,7 @@
     "resourceType": "Observation",
     "id": "Obs010",
     "subject": {
-        "reference": "Patient/100",
+        "reference": "Patient/1",
         "display": "Stepfan Graf - m"
     },
     "status": "final",
@@ -18,7 +18,7 @@
     "effectiveDateTime": "2021-12-23",
     "performer": [
         {
-            "reference": "Organization/200",
+            "reference": "Organization/3",
             "display": "Labor Landstraße"
         }
     ],
