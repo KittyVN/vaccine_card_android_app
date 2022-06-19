@@ -71,6 +71,8 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
     public class CountryViewHolder extends RecyclerView.ViewHolder{
         TextView country,necessary,recommended;
 
+
+        //zuordnung recycler
         public CountryViewHolder(@NonNull View itemView) {
             super(itemView);
             country = itemView.findViewById(R.id.tvCountry);

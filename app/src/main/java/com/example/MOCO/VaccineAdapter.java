@@ -6,11 +6,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.apache.commons.lang3.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,6 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
     private List<String> vaccineDoseNumber = new ArrayList<String>();
     private List<String> vaccineDoseNumberTotal = new ArrayList<String>();
     private Context ctx;
-    private ProgressBar spinner;
 
 public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String> s3, List<String> s4, List<String> s5,List<String> s6,List<String> s7){
  ctx = ct;

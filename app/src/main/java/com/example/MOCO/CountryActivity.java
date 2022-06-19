@@ -31,7 +31,8 @@ public class CountryActivity extends AppCompatActivity {
     private List<String> countryName = new ArrayList<String>();
     private ArrayList<ArrayList<String>> countryNecessary = new ArrayList<ArrayList<String>>();
     private ArrayList<ArrayList<String>> countryRecommended = new ArrayList<ArrayList<String>>();
-    private RecyclerView rvCountry;
+    private RecyclerView rvNecessaryCountry;
+    private RecyclerView rvRecommendedCountry;
     private String enteredSearchCountry;
 
 
@@ -160,16 +161,25 @@ public class CountryActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<String> countryList) {
             CountryActivity activity = activityReference.get();
+            CountryNecessaryAdapter NAdapter = null;
+            CountryRecommendedAdapter RAdapter = null;
 
-            for (String country : countryList) {
-                System.out.println(country);
+            for(int i = 0; i < activity.countryName.size(); i++) {
+                if(activity.countryName.get(i) == activity.enteredSearchCountry) {
+                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(i));
+                    RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(i));
+
+                }
             }
 
-            activity.rvCountry = activity.findViewById(R.id.rvCountry);
+            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
-            CountryAdapter countryAdapter = new CountryAdapter(activity.ctx, activity.countryName, activity.countryNecessary, activity.countryRecommended);
-            activity.rvCountry.setAdapter(countryAdapter);
-            activity.rvCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            activity.rvNecessaryCountry.setAdapter(NAdapter);
+            activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
+            activity.rvRecommendedCountry.setAdapter(RAdapter);
+            activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
     }
 }

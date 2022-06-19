@@ -10,14 +10,14 @@
         android:id="@+id/tvCountry_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:textSize="35sp"
+        android:gravity="center"
+        android:text="@string/tvHome_reisen"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:text="@string/tvHome_reisen"
-        android:gravity="center"/>
+        android:textSize="35sp" />
 
 
     <android.support.design.widget.TextInputLayout
@@ -30,8 +30,7 @@
             android:id="@+id/textInputCountry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/bottom_navmenu_country"
-            android:inputType="text"/>
+            android:hint="@string/tvTravel_search" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -45,12 +44,14 @@
         android:layout_toRightOf="@+id/textInputCountryLayout"/>
 
 
-    <android.support.v7.widget.RecyclerView
+    <!--<android.support.v7.widget.RecyclerView
         android:id="@+id/rvCountry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/bottomNavigationView"
         android:layout_below="@+id/textInputCountryLayout"
-        android:layout_above="@+id/bottomNavigationView"/>
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-1dp" />-->
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -61,5 +62,26 @@
         app:itemIconTint="@drawable/bottom_navmenu_selector"
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:menu="@menu/bottom_navmenu" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvNecessaryCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputCountryLayout"
+        android:paddingTop="30dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvRecommendedCountry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvNecessaryCountry" />
+
+    <TextView
+        android:id="@+id/tvCountryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInputCountryLayout"
+        android:text="Country" />
+
 
 </RelativeLayout>
