@@ -25,7 +25,7 @@ public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessa
     @Override
     public CountryNecessaryViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.country_recyclerview_row,viewGroup,false);
+        View view = inflater.inflate(R.layout.country_necessary_rv_row,viewGroup,false);
         return new CountryNecessaryViewHolder(view);
     }
 

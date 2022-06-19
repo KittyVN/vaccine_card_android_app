@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.ImmunizationRecommendation;
@@ -33,6 +34,7 @@ public class CountryActivity extends AppCompatActivity {
     private ArrayList<ArrayList<String>> countryRecommended = new ArrayList<ArrayList<String>>();
     private RecyclerView rvNecessaryCountry;
     private RecyclerView rvRecommendedCountry;
+    private TextView tvCountryName;
     private String enteredSearchCountry;
 
 
@@ -129,11 +131,32 @@ public class CountryActivity extends AppCompatActivity {
                     }
                 }
             }
-            new CountryActivity.CountryTask1(activity).execute();
+           //new CountryActivity.CountryTask1(activity).execute();
+            CountryNecessaryAdapter NAdapter;
+            CountryRecommendedAdapter RAdapter;
+
+
+                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(0));
+                    RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(0));
+
+                    activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
+                    activity.tvCountryName.setText(activity.countryName.get(0));
+
+                    System.out.println("testout");
+
+                    activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+                    activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+
+                    activity.rvNecessaryCountry.setAdapter(NAdapter);
+                    activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
+                    activity.rvRecommendedCountry.setAdapter(RAdapter);
+                    activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
 
         }
     }
-
+/*
     private static class CountryTask1 extends AsyncTask<Void, Object, List<String>> {
         private WeakReference<CountryActivity> activityReference;
 
@@ -169,17 +192,24 @@ public class CountryActivity extends AppCompatActivity {
                     NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary.get(i));
                     RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended.get(i));
 
+                    activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
+                    activity.tvCountryName.setText(activity.countryName.get(i));
+
+                    System.out.println("testout");
+
+                    activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+                    activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+
+                    activity.rvNecessaryCountry.setAdapter(NAdapter);
+                    activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
+                    activity.rvRecommendedCountry.setAdapter(RAdapter);
+                    activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
                 }
             }
 
-            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
-            activity.rvNecessaryCountry.setAdapter(NAdapter);
-            activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
-
-            activity.rvRecommendedCountry.setAdapter(RAdapter);
-            activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
     }
+*/
 }

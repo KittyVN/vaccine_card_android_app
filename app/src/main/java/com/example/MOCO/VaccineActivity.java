@@ -1,6 +1,5 @@
 package com.example.MOCO;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -39,6 +38,7 @@ public class VaccineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_vaccine);
 
         btmNavView = findViewById(R.id.bottomNavigationView);
         btmNavView.setSelectedItemId(R.id.bottomNavVaccine);
@@ -151,7 +151,7 @@ public class VaccineActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<String> herstellerList) {
             VaccineActivity activity = activityReference.get();
-            //
+
             for (String hersteller : herstellerList) {
                 System.out.println(hersteller);
             }

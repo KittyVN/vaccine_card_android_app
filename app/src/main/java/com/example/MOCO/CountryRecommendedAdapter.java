@@ -28,7 +28,7 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     @Override
     public CountryRecommendedViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.country_recyclerview_row,viewGroup,false);
+        View view = inflater.inflate(R.layout.country_recommended_rv_row,viewGroup,false);
         return new CountryRecommendedViewHolder(view);
     }
 
