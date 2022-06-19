@@ -93,7 +93,7 @@ public class VaccineActivity extends AppCompatActivity {
 
             for (Immunization vaccine : vaccines) {
                 activity.vaccineKrankheit.add(vaccine.getVaccineCode().getCoding().get(0).getDisplay());
-                activity.vaccineHersteller.add(vaccine.getManufacturer().getReference());
+                activity.vaccineHersteller.add(vaccine.getManufacturer().getDisplay());
                 activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
                 activity.vaccineLotNumber.add(vaccine.getLotNumber());
                 if (vaccine.getPerformer().size() > 0){
@@ -112,11 +112,17 @@ public class VaccineActivity extends AppCompatActivity {
             System.out.println(activity.vaccineKrankheit);
 
             //get the references
-            new VaccineTask1(activity).execute();
+            //new VaccineTask1(activity).execute();
+
+            activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
+
+            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber, activity.vaccinePerformer,activity.vaccineDoseNumber,activity.vaccineDoseNumberTotal);
+            activity.rvVaccine.setAdapter(vacAdapter);
+            activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
 
         }
     }
-
+/*
     private static class VaccineTask1 extends AsyncTask<Void, Object, List<String>> {
         private WeakReference<VaccineActivity> activityReference;
 
@@ -156,5 +162,5 @@ public class VaccineActivity extends AppCompatActivity {
             activity.rvVaccine.setAdapter(vacAdapter);
             activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
         }
-    }
+    }*/
 }
