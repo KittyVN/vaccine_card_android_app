@@ -83,7 +83,7 @@ public class VaccineActivity extends AppCompatActivity {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
             //return list;
-            List<Immunization> listVaccines = gcm.getVaccinesTest();
+            List<Immunization> listVaccines = gcm.getAllVacciness();
 
             return listVaccines;
         }

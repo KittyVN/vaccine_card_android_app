@@ -80,7 +80,7 @@ public class TiterActivity extends AppCompatActivity {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
             //return list;
-            List<Observation> listTiters = gcm.getTiterTest();
+            List<Observation> listTiters = gcm.getAllTiters();
 
             return listTiters;
         }

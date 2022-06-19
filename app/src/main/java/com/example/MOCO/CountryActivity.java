@@ -97,9 +97,8 @@ public class CountryActivity extends AppCompatActivity {
         protected List<ImmunizationRecommendation> doInBackground(Void... voids) {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
 
-            //fix so it shows the country you searched for
             //List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
-            List<ImmunizationRecommendation> listRecommendations = gcm.getRecommendationsTest();
+            List<ImmunizationRecommendation> listRecommendations = gcm.getRecommendation(activity.enteredSearchCountry);
 
             return listRecommendations;
         }

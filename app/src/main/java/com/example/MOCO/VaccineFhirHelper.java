@@ -1,12 +1,14 @@
 package com.example.MOCO;
 
 import org.hl7.fhir.r4.model.Bundle;
+import org.hl7.fhir.r4.model.Enumerations;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
 import org.hl7.fhir.r4.model.Organization;
 import org.hl7.fhir.r4.model.Patient;
+import org.hl7.fhir.r4.model.SearchParameter;
 
 import java.util.List;
 
@@ -25,18 +27,25 @@ public class VaccineFhirHelper {
         private String url4 = "https://spark.incendi.no/fhir";
         private String url5 = "https://sqlonfhir-r4.azurewebsites.net/fhir";
         private String url1 = "https://server.fire.ly/r4";
+        private String ourServerUrl = "http://lukasletuhalmg.synology.me:12345/fhir";
 
-        private String org = "691117c307504e6e8428e8ad4520bcf6";
-        private String patient ="f21ffe610a074c679c417e10950fd633";
-/*
-   org100 = b6eba60b76774ca4942809e03bc0787e
-   org200 = 19a850afb1d24902ba94d940408ed713
-   org300 = f752a54b44654a82a0d805b293439a7b
-   patient = bce2ef51d0804acc98cf655a5863edf4
-    */
+
         public VaccineFhirHelper() {
             ctx = FhirContext.forR4();
-            client = ctx.newRestfulGenericClient(url1);
+            client = ctx.newRestfulGenericClient(ourServerUrl);
+        }
+
+        public void uploadSearchParameter(){
+            // Create a search parameter definition
+            SearchParameter countrySP = new SearchParameter();
+            countrySP.addBase("ImmunizationRecommendation");
+            countrySP.setCode("country");
+            countrySP.setType(Enumerations.SearchParamType.TOKEN);
+            countrySP.setTitle("Country");
+            countrySP.setExpression("ImmunizationRecommendation.extension('http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusCountryName')");
+            countrySP.setXpathUsage(SearchParameter.XPathUsageType.NORMAL);
+            countrySP.setStatus(Enumerations.PublicationStatus.ACTIVE);
+            client.create().resource(countrySP).execute();
         }
 
         public List<Immunization> getVacciness() {
@@ -106,6 +115,15 @@ public class VaccineFhirHelper {
 
     public List<ImmunizationRecommendation> getAllRecommendations(){
         Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
+    }
+
+    public List<ImmunizationRecommendation> getRecommendation(String country){
+        Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
+                .where(new TokenClientParam("country").exactly().code(country))
                 .prettyPrint()
                 .returnBundle(Bundle.class)
                 .execute();
