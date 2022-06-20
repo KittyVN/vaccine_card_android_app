@@ -106,6 +106,7 @@ public class CountryActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     handled = true;
                     enteredSearchCountry = tvSearch.getText().toString();
+                    tvSearch.setText("");
                     new CountryTask(activity).execute();
                 }
                 return handled;
@@ -117,6 +118,7 @@ public class CountryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 enteredSearchCountry = tvSearch.getText().toString();
+                tvSearch.setText("");
                 new CountryTask(activity).execute();
             }
         });

@@ -88,7 +88,9 @@ public class VaccineActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     handled = true;
                     enteredSearchTarget = tvSearch.getText().toString();
+                    tvSearch.setText("");
                     new VaccineTask(activity).execute();
+
                 }
                 return handled;
             }
@@ -99,6 +101,7 @@ public class VaccineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 enteredSearchTarget = tvSearch.getText().toString();
+                tvSearch.setText("");
                 new VaccineTask(activity).execute();
             }
         });
