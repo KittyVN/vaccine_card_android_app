@@ -36,7 +36,7 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     @Override
     public void onBindViewHolder(@NonNull CountryRecommendedViewHolder countryViewHolder, int i) {
         countryViewHolder.recommended.setText(countryRecommended.get(i));
-        if (countryRecommendedBoolean.get(i) == true){
+        if (!countryRecommendedBoolean.isEmpty() && countryRecommendedBoolean.get(i) == true){
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
         }else{
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);

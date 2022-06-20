@@ -20,13 +20,18 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import org.hl7.fhir.r4.model.Location;
 
 import java.lang.ref.WeakReference;
 import java.text.BreakIterator;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class CountryActivity extends AppCompatActivity {
@@ -41,6 +46,7 @@ public class CountryActivity extends AppCompatActivity {
     private ArrayList<String> countryRecommended = new ArrayList<>();
 
     private List<String> allVaccineTargetDiseases = new ArrayList<String>();
+    private List<String> allVaccineTargetDiseasesExpiration = new ArrayList<String>();
     private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
     private ArrayList<Boolean> countryNecessaryBoolean = new ArrayList<>();
     private ArrayList<String>  countryRecommendedWithoutDescription = new ArrayList<>();
@@ -191,7 +197,25 @@ public class CountryActivity extends AppCompatActivity {
                     counter = 0;
                     for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))) {
-                            counter = counter + 1;
+                            SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+
+                            Date currentTimeTemp = Calendar.getInstance().getTime();
+                            String currentTimeTemp1 = currentTimeTemp.toString();
+                            String expirationDateTemp = activity.allVaccineTargetDiseasesExpiration.get(i);
+                            Date currentTime = new Date();
+                            Date expirationDate = new Date();
+                            try {
+                                currentTime = format.parse(currentTimeTemp1);
+                                expirationDate = format.parse(expirationDateTemp);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            if (currentTime.before(expirationDate)){
+                                counter = counter + 1;
+                                break;
+                            }
+
                         }
                     }
                     if (counter > 0) {
@@ -206,6 +230,7 @@ public class CountryActivity extends AppCompatActivity {
                     for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
                             counter = counter + 1;
+                            break;
                         }
                     }
                     if (counter > 0) {
@@ -262,6 +287,7 @@ public class CountryActivity extends AppCompatActivity {
             for (Immunization vaccine : vaccines) {
                 for (int i = 0; i < vaccine.getProtocolApplied().get(0).getTargetDisease().size(); i++){
                     activity.allVaccineTargetDiseases.add(vaccine.getProtocolApplied().get(0).getTargetDisease().get(i).getCoding().get(0).getDisplay());
+                    activity.allVaccineTargetDiseasesExpiration.add(vaccine.getExpirationDate().toString());
                 }
             }
 
