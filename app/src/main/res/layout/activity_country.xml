@@ -24,10 +24,13 @@
     <ImageView
         android:id="@+id/ivGlobe"
         android:visibility="visible"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvCountryName"
+        android:layout_above="@id/bottomNavigationView"
+        android:background="@drawable/globe"
         android:layout_centerInParent="true"
-        tools:srcCompat="@drawable/globe" />
+         />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputCountryLayout"

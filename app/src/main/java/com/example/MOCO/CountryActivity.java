@@ -169,6 +169,7 @@ public class CountryActivity extends AppCompatActivity {
 
             activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
             activity.ivGlobe.setVisibility(View.INVISIBLE);
+
             int counter = 0;
             for (int j = 0; j < activity.countryNecessary.size(); j++){
                 counter = 0;
