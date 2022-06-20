@@ -34,6 +34,7 @@
             <TextView
                 android:id="@+id/tvTrafficLightNecessary"
                 android:layout_width="30dp"
+                android:layout_margin="5dp"
                 android:layout_height="30dp"
                 android:background="@color/colorRedTraffic"
                 app:layout_constraintBottom_toBottomOf="parent"
