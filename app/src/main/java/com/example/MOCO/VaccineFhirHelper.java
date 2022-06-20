@@ -48,10 +48,11 @@ public class VaccineFhirHelper {
             client.create().resource(countrySP).execute();
         }
 
-        public List<Immunization> getVacciness() {
+
+        public List<Immunization> getVacciness(String vaccine) {
             // Invoke the client
             Bundle bundle = client.search().forResource(Immunization.class)
-                    .where(new TokenClientParam("patient").exactly().code("f21ffe610a074c679c417e10950fd633"))
+                    .where(new TokenClientParam("_id").exactly().code("ddbb5bfd-da9b-42a7-a1fb-79e08a16f394"))
                     .prettyPrint()
                     .returnBundle(Bundle.class)
                     .execute();

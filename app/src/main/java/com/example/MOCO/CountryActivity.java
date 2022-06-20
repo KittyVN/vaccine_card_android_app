@@ -247,8 +247,6 @@ public class CountryActivity extends AppCompatActivity {
                 activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
                 activity.tvCountryName.setText(activity.countryName.get(0));
 
-                System.out.println("testout");
-
                 activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
                 activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
