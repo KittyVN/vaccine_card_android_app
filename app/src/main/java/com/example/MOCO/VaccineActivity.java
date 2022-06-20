@@ -5,13 +5,20 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Immunization;
+import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 
 import java.lang.ref.WeakReference;
 import java.time.format.DateTimeFormatter;
@@ -33,6 +40,9 @@ public class VaccineActivity extends AppCompatActivity {
 
     private RecyclerView rvVaccine;
     private Context ctx = this;
+    private VaccineActivity activity = this;
+    private String enteredSearchTarget;
+
 
 
     @Override
@@ -66,24 +76,56 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
 
-        new VaccineTask(this).execute();
+        TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputVaccine);
+        ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch1);
+        new VaccineTask(activity).execute();
+
+
+        tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    handled = true;
+                    enteredSearchTarget = tvSearch.getText().toString();
+                    new VaccineTask(activity).execute();
+                }
+                return handled;
+            }
+        });
+
+
+        btnCountrySearch.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                enteredSearchTarget = tvSearch.getText().toString();
+                new VaccineTask(activity).execute();
+            }
+        });
 
     }
 
     private static class VaccineTask extends AsyncTask<Void, Object, List<Immunization>> {
 
         private WeakReference<VaccineActivity> activityReference;
+        private VaccineActivity activity;
+
 
         // only retain a weak reference to the activity
         VaccineTask(VaccineActivity context) {
             activityReference = new WeakReference<>(context);
+            activity = activityReference.get();
         }
         @Override
         protected List<Immunization> doInBackground(Void... voids) {
             VaccineFhirHelper gcm = new VaccineFhirHelper();
+            List<Immunization> listVaccines = new ArrayList<>();
 
-            //return list;
-            List<Immunization> listVaccines = gcm.getAllVacciness();
+            if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null){
+                listVaccines = gcm.getAllVacciness();
+            }else {
+                listVaccines = gcm.getVacciness(activity.enteredSearchTarget);
+            }
 
             return listVaccines;
         }
@@ -91,35 +133,36 @@ public class VaccineActivity extends AppCompatActivity {
         protected void onPostExecute(List<Immunization> vaccines) {
             VaccineActivity activity = activityReference.get();
 
-            for (Immunization vaccine : vaccines) {
-                activity.vaccineKrankheit.add(vaccine.getVaccineCode().getCoding().get(0).getDisplay());
-                activity.vaccineHersteller.add(vaccine.getManufacturer().getDisplay());
-                activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
-                activity.vaccineLotNumber.add(vaccine.getLotNumber());
-                if (vaccine.getPerformer().size() > 0){
-                    activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
-                }else {
-                    activity.vaccinePerformer.add("Unknown");
+            if (vaccines.size() != 0) {
+                for (Immunization vaccine : vaccines) {
+                    activity.vaccineKrankheit.add(vaccine.getVaccineCode().getCoding().get(0).getDisplay());
+                    activity.vaccineHersteller.add(vaccine.getManufacturer().getDisplay());
+                    activity.vaccineDate.add(vaccine.getOccurrenceDateTimeType().asStringValue());
+                    activity.vaccineLotNumber.add(vaccine.getLotNumber());
+                    if (vaccine.getPerformer().size() > 0) {
+                        activity.vaccinePerformer.add(vaccine.getPerformer().get(0).getActor().getDisplay());
+                    } else {
+                        activity.vaccinePerformer.add("Unknown");
+                    }
+                    if (vaccine.getProtocolApplied().size() > 0) {
+                        activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberPositiveIntType().asStringValue());
+                        activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesPositiveIntType().asStringValue());
+                    } else {
+                        activity.vaccineDoseNumber.add("Unknown");
+                        activity.vaccineDoseNumberTotal.add("Unknown");
+                    }
                 }
-                if (vaccine.getProtocolApplied().size() > 0) {
-                    activity.vaccineDoseNumber.add(vaccine.getProtocolApplied().get(0).getDoseNumberPositiveIntType().asStringValue());
-                    activity.vaccineDoseNumberTotal.add(vaccine.getProtocolApplied().get(0).getSeriesDosesPositiveIntType().asStringValue());
-                }else {
-                    activity.vaccineDoseNumber.add("Unknown");
-                    activity.vaccineDoseNumberTotal.add("Unknown");
-                }
+                System.out.println(activity.vaccineKrankheit);
+
+                //get the references
+                //new VaccineTask1(activity).execute();
+
+                activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
+
+                VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber, activity.vaccinePerformer, activity.vaccineDoseNumber, activity.vaccineDoseNumberTotal);
+                activity.rvVaccine.setAdapter(vacAdapter);
+                activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
             }
-            System.out.println(activity.vaccineKrankheit);
-
-            //get the references
-            //new VaccineTask1(activity).execute();
-
-            activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
-
-            VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.vaccineKrankheit, activity.vaccineHersteller, activity.vaccineDate, activity.vaccineLotNumber, activity.vaccinePerformer,activity.vaccineDoseNumber,activity.vaccineDoseNumberTotal);
-            activity.rvVaccine.setAdapter(vacAdapter);
-            activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
-
         }
     }
 /*
