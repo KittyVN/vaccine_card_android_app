@@ -25,7 +25,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:text="Impfung"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="Immunization"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +48,7 @@
                 android:id="@+id/tvHerstellerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:layout_margin="5dp"
                 android:text="Hersteller"
                 android:textStyle="bold"
@@ -71,6 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:text="Performer"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +99,7 @@
                 android:layout_margin="5dp"
                 android:text="Datum"
                 android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed-medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerformer" />
 
@@ -108,6 +112,7 @@
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
                 app:layout_constraintHorizontal_bias="0.0"
+                android:paddingBottom="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvDateTitle" />
 
