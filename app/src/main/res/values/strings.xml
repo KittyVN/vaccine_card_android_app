@@ -9,5 +9,6 @@
     <string name="tvHome_titer">TITER</string>
     <string name="tvHome_reisen"><![CDATA[Travelcheck]]></string>
     <string name="tvTravel_search"><![CDATA[Country]]></string>
+    <string name="tvVaccine_search"><![CDATA[Vaccine]]></string>
 
 </resources>
