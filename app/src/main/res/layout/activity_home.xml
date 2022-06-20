@@ -51,12 +51,11 @@
         -->
     <TextView
         android:id="@+id/tvHome_Welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="249dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="377dp"
+        android:layout_height="211dp"
+        android:layout_marginLeft="22dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/colorTravel"
+        android:layout_marginRight="16dp"
         android:contentInsetStart="0dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="start"
@@ -65,7 +64,7 @@
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/black"
-        android:textSize="60sp"
+        android:textSize="56sp"
         android:typeface="normal" />
 
     <android.support.v7.widget.AppCompatButton
@@ -79,7 +78,7 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:backgroundTint="@color/colorImpf"
+        android:backgroundTint="@color/colorVaccPrimary"
         android:drawableEnd="@drawable/home_impfung"
         android:drawableRight="@drawable/home_impfung"
         android:fontFamily="sans-serif-condensed-medium"
@@ -99,7 +98,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:backgroundTint="@color/colorTITER"
+        android:backgroundTint="@color/colorTITERPrimary"
         android:drawableStart="@drawable/home_titer"
         android:drawableLeft="@drawable/home_titer"
         android:fontFamily="sans-serif-condensed-medium"
@@ -118,7 +117,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:backgroundTint="@color/colorTravel"
+        android:backgroundTint="@color/colorTravelPrimary"
         android:drawableEnd="@drawable/home_reisen"
         android:drawableRight="@drawable/home_reisen"
         android:fontFamily="sans-serif-condensed-medium"
@@ -126,7 +125,7 @@
         android:text="@string/tvHome_reisen"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
-        app:itemBackground="@color/colorTravel" />
+        app:itemBackground="@color/colorTravelPrimary" />
 
 
     <android.support.design.widget.BottomNavigationView

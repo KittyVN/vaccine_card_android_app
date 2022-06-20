@@ -13,7 +13,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorTITERPrimary"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="@string/tvHome_titer"
@@ -38,8 +38,8 @@
         app:menu="@menu/bottom_navmenu"
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:itemIconTint="@drawable/bottom_navmenu_selector"
-        app:itemBackground="@color/colorPrimary"
-        android:background="@color/colorPrimary"
+        app:itemBackground="@color/colorTITERPrimary"
+        android:background="@color/colorTITERPrimary"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

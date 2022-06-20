@@ -59,8 +59,8 @@ public class CountryActivity extends AppCompatActivity {
     private TextView tvRecommendedHint;
     private TextView tvNecessaryHint;
     private ImageView ivGlobe;
-    private CardView cvNecessary;
-    private CardView cvRecommended;
+    private ImageView ivBigTrafficLight;
+
 
 
     @Override
@@ -149,6 +149,8 @@ public class CountryActivity extends AppCompatActivity {
             activity.countryName.clear();
             activity.countryNecessary.clear();
             activity.countryRecommended.clear();
+            activity.countryNecessaryBoolean.clear();
+            activity.countryRecommendedBoolean.clear();
             activity.countryRecommendedWithoutDescription.clear();
 
             if (recommendations.size() != 0) {
@@ -164,7 +166,7 @@ public class CountryActivity extends AppCompatActivity {
                         if (recommendation.getRecommendation().get(i).hasDescription()) {
                             //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
                             //activity.countryRecommended.add(temp);
-                            activity.countryRecommended.add(recommendation.getRecommendation().get(i).getDescription().toString());
+                            activity.countryRecommended.add(recommendation.getRecommendation().get(i).getDescription());
                             activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                         } else if (!recommendation.getRecommendation().get(i).hasDescription()) {
                             //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
@@ -191,6 +193,7 @@ public class CountryActivity extends AppCompatActivity {
 
                 activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
                 activity.ivGlobe.setVisibility(View.INVISIBLE);
+
 
                 int counter = 0;
                 for (int j = 0; j < activity.countryNecessary.size(); j++) {
@@ -243,6 +246,34 @@ public class CountryActivity extends AppCompatActivity {
 
                 NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary, activity.countryNecessaryBoolean);
                 RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean,activity.countryRecommendedWithoutDescription);
+
+                boolean hasAllNecessary = true;
+                boolean hasAllRecommended = true;
+                for(int i = 0; i < activity.countryNecessaryBoolean.size(); i++) {
+                    if(!activity.countryNecessaryBoolean.get(i)) {
+                        hasAllNecessary = false;
+                    }
+                }
+                for(int i = 0; i < activity.countryRecommendedBoolean.size();i++) {
+                    if(!activity.countryRecommendedBoolean.get(i)) {
+                        hasAllRecommended = false;
+                    }
+                }
+                activity.ivBigTrafficLight = activity.findViewById(R.id.ivBigTrafficLight);
+
+                if(hasAllNecessary) {
+                    activity.ivBigTrafficLight.setBackgroundResource(R.drawable.ampel_gelb);
+                    if (hasAllRecommended) {
+                        activity.ivBigTrafficLight.setBackgroundResource(R.drawable.ampel_gruen);
+                    }
+                } else {
+                    activity.ivBigTrafficLight.setBackgroundResource(R.drawable.ampel_rot);
+                }
+
+
+                activity.ivBigTrafficLight.setVisibility(View.VISIBLE);
+
+
 
                 activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
                 activity.tvCountryName.setText(activity.countryName.get(0));

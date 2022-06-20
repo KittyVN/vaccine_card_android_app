@@ -15,7 +15,7 @@
         android:layout_marginEnd="0dp"
         android:drawableStart="@drawable/rounded_corners"
         android:drawableLeft="@drawable/rounded_corners"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorVaccPrimary"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:text="@string/tvHome_impfungen"
@@ -67,8 +67,8 @@
         app:menu="@menu/bottom_navmenu"
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:itemIconTint="@drawable/bottom_navmenu_selector"
-        app:itemBackground="@color/colorPrimary"
-        android:background="@color/colorPrimary"
+        app:itemBackground="@color/colorVaccPrimary"
+        android:background="@color/colorVaccPrimary"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

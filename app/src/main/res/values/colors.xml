@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#727EF1</color>
-    <color name="colorTravel">#66E7FD</color>
+
     <color name="colorTITER">#FF9F6A</color>
     <color name="colorImpf">#FF6A73</color>
     <color name="colorPrimaryDark">#727EF1</color>
     <color name="colorAccent">#D81B60</color>
+
+
+    <color name="colorVaccPrimary">#FF6A73</color>
+    <color name="colorVaccCard">#FFA9AE</color>
+
+    <color name="colorTITERPrimary">#FF9F6A</color>
+    <color name="colorTITERCard">#FFBB95</color>
+
+    <color name="colorTravelPrimary">#66E7FD</color>
+    <color name="colorTravelCard">#A5F2FF</color>
+
+
     <color name="colorGreenTraffic">#00FF00</color>
     <color name="colorRedTraffic">#DC143C</color>
 
