@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -91,14 +93,28 @@ public class CountryActivity extends AppCompatActivity {
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch);
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputCountry);
 
-        btnCountrySearch.setOnClickListener( new View.OnClickListener() {
+        tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    handled = true;
+                    enteredSearchCountry = tvSearch.getText().toString();
+                    new CountryTask(activity).execute();
+                }
+                return handled;
+            }
+        });
 
+
+        btnCountrySearch.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 enteredSearchCountry = tvSearch.getText().toString();
                 new CountryTask(activity).execute();
             }
         });
+
     }
 
     private static class CountryTask1 extends AsyncTask<Void, Object, List<ImmunizationRecommendation>> {
