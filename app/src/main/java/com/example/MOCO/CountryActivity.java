@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -107,6 +108,8 @@ public class CountryActivity extends AppCompatActivity {
                     handled = true;
                     enteredSearchCountry = tvSearch.getText().toString();
                     tvSearch.setText("");
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     new CountryTask(activity).execute();
                 }
                 return handled;
@@ -119,6 +122,8 @@ public class CountryActivity extends AppCompatActivity {
             public void onClick(View v) {
                 enteredSearchCountry = tvSearch.getText().toString();
                 tvSearch.setText("");
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 new CountryTask(activity).execute();
             }
         });

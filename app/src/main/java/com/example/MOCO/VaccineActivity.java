@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -89,6 +90,8 @@ public class VaccineActivity extends AppCompatActivity {
                     handled = true;
                     enteredSearchTarget = tvSearch.getText().toString();
                     tvSearch.setText("");
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     new VaccineTask(activity).execute();
 
                 }
@@ -102,6 +105,8 @@ public class VaccineActivity extends AppCompatActivity {
             public void onClick(View v) {
                 enteredSearchTarget = tvSearch.getText().toString();
                 tvSearch.setText("");
+                InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 new VaccineTask(activity).execute();
             }
         });
