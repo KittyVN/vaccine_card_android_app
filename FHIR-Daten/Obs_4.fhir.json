@@ -1,0 +1,30 @@
+{
+    "resourceType": "Observation",
+    "id": "Obs004",
+    "subject": {
+        "reference": "Patient/1",
+        "display": "Stepfan Graf - m"
+    },
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "26059-6",
+                "display": "European tick borne encephalitis virus Ab.IgG"
+            }
+        ]
+    },
+    "effectiveDateTime": "2020-09-28",
+    "performer": [
+        {
+            "reference": "Organization/3",
+            "display": "Labor Landstraße"
+        }
+    ],
+    "valueQuantity": {
+        "system": "http://unitsofmeasure.org",
+        "code": "U/ml",
+        "value": 10
+    }
+}
