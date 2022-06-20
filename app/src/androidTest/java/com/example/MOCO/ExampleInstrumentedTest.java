@@ -23,4 +23,11 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.myfirstapp", appContext.getPackageName());
     }
+
+    @Test
+    public void test(){
+        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+
+        assertEquals(vaccineFhirHelper.getAllVacciness().size(),12);
+    }
 }
