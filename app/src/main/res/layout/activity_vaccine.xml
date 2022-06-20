@@ -26,14 +26,17 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputVaccineLayout"
-        android:layout_width="350dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvVaccine_Title">
+        android:layout_below="@+id/tvVaccine_Title"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/textInputVaccine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:hint="@string/tvVaccine_search"
             android:inputType="text"
             android:imeOptions="actionSend"/>
