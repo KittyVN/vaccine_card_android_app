@@ -176,11 +176,11 @@ public class CountryActivity extends AppCompatActivity {
                 activity.tvRecommendedHint.setVisibility(View.VISIBLE);
                 activity.tvNecessaryHint.setVisibility(View.VISIBLE);
 
-                activity.cvNecessary = activity.findViewById(R.id.cvNecessary);
-                activity.cvRecommended = activity.findViewById(R.id.cvRecommended);
+                activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+                activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
-                activity.cvNecessary.setVisibility(View.VISIBLE);
-                activity.cvRecommended.setVisibility(View.VISIBLE);
+                activity.rvRecommendedCountry.setVisibility(View.VISIBLE);
+                activity.rvNecessaryCountry.setVisibility(View.VISIBLE);
 
 
                 activity.ivGlobe = activity.findViewById(R.id.ivGlobe);

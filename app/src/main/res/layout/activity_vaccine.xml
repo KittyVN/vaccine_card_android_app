@@ -34,7 +34,7 @@
             android:id="@+id/textInputVaccine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/tvTravel_search"
+            android:hint="@string/tvVaccine_search"
             android:inputType="text"
             android:imeOptions="actionSend"/>
 
