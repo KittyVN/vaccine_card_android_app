@@ -48,6 +48,7 @@
         android:id="@+id/btnSearch1"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
+        android:layout_marginTop="10dp"
         app:srcCompat="@drawable/ic_baseline_search_24"
         android:layout_below="@id/tvVaccine_Title"
         android:layout_toRightOf="@+id/textInputVaccineLayout"/>
