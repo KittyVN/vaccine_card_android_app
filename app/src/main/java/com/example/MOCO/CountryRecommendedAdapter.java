@@ -14,15 +14,16 @@ import java.util.List;
 public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecommendedAdapter.CountryRecommendedViewHolder>{
     private ArrayList<String> countryRecommended = new ArrayList<>();
     private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
+    private ArrayList<String>  countryRecommendedWithoutDescription = new ArrayList<>();
 
     private Context ctx;
 
-    public CountryRecommendedAdapter(Context ct, ArrayList<String> s1, ArrayList<Boolean> s2){
+    public CountryRecommendedAdapter(Context ct, ArrayList<String> s1, ArrayList<Boolean> s2, ArrayList<String> s3){
         ctx = ct;
         countryRecommended = s1;
         countryRecommendedBoolean = s2;
+        countryRecommendedWithoutDescription = s3;
     }
-
 
 
     @NonNull
@@ -35,7 +36,8 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
 
     @Override
     public void onBindViewHolder(@NonNull CountryRecommendedViewHolder countryViewHolder, int i) {
-        countryViewHolder.recommended.setText(countryRecommended.get(i));
+        countryViewHolder.recommendedDescription.setText(countryRecommended.get(i));
+        countryViewHolder.recommendedTargetDisease.setText(countryRecommendedWithoutDescription.get(i));
         if (!countryRecommendedBoolean.isEmpty() && countryRecommendedBoolean.get(i) == true){
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
         }else{
@@ -53,14 +55,15 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     }
 
     public class CountryRecommendedViewHolder extends RecyclerView.ViewHolder{
-        TextView recommended,trafficBoolean;
+        TextView recommendedDescription,trafficBoolean,recommendedTargetDisease;
 
 
         //zuordnung recycler
         public CountryRecommendedViewHolder(@NonNull View itemView) {
             super(itemView);
-            recommended = itemView.findViewById(R.id.tvRecommendedVaccines);
+            recommendedDescription = itemView.findViewById(R.id.tvVaccineDescription);
             trafficBoolean = itemView.findViewById(R.id.tvTrafficLightRecommended);
+            recommendedTargetDisease = itemView.findViewById(R.id.tvRecommendedVaccines);
         }
     }
 

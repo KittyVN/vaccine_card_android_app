@@ -164,7 +164,7 @@ public class CountryActivity extends AppCompatActivity {
                         if (recommendation.getRecommendation().get(i).hasDescription()) {
                             //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
                             //activity.countryRecommended.add(temp);
-                            activity.countryRecommended.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                            activity.countryRecommended.add(recommendation.getRecommendation().get(i).getDescription().toString());
                             activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                         } else if (!recommendation.getRecommendation().get(i).hasDescription()) {
                             //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
@@ -242,7 +242,7 @@ public class CountryActivity extends AppCompatActivity {
 
 
                 NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary, activity.countryNecessaryBoolean);
-                RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean);
+                RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean,activity.countryRecommendedWithoutDescription);
 
                 activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
                 activity.tvCountryName.setText(activity.countryName.get(0));
