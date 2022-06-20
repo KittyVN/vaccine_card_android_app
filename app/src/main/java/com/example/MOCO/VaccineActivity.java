@@ -133,6 +133,14 @@ public class VaccineActivity extends AppCompatActivity {
         protected void onPostExecute(List<Immunization> vaccines) {
             VaccineActivity activity = activityReference.get();
 
+            activity.vaccinePerformer.clear();
+            activity.vaccineKrankheit.clear();
+            activity.vaccineDoseNumberTotal.clear();
+            activity.vaccineDate.clear();
+            activity.vaccineDoseNumber.clear();
+            activity.vaccineHersteller.clear();
+            activity.vaccineLotNumber.clear();
+
             if (vaccines.size() != 0) {
                 for (Immunization vaccine : vaccines) {
                     activity.vaccineKrankheit.add(vaccine.getVaccineCode().getCoding().get(0).getDisplay());
