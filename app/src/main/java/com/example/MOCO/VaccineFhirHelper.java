@@ -133,6 +133,16 @@ public class VaccineFhirHelper {
         return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
     }
 
+    public List<ImmunizationRecommendation> getRecommendation1(String country){
+        String searchUrl = "ImmunizationRecommendation?country="+country;
+        Bundle bundle = client.search()
+                .byUrl(searchUrl)
+                .prettyPrint()
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
+    }
+
     public List<ImmunizationRecommendation> getRecommendationsTest(){
         Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
                 .where(new TokenClientParam("_id").exactly().code("a01d428f-2da5-462d-806b-6b7175068901"))
