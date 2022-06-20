@@ -51,7 +51,11 @@ public VaccineAdapter(Context ct, List<String> s1, List<String> s2, List<String>
         vaccineViewHolder.date.setText(vaccineDate.get(i));
         vaccineViewHolder.lotNumber.setText(vaccineLotNumber.get(i));
         vaccineViewHolder.performer.setText(vaccinePerformer.get(i));
-        vaccineViewHolder.doses.setText(vaccineDoseNumber.get(i) + "/" + vaccineDoseNumberTotal.get(i));
+        if(vaccineDoseNumberTotal.get(i) == "0"){
+            vaccineViewHolder.doses.setText(vaccineDoseNumber.get(i));
+        }else {
+            vaccineViewHolder.doses.setText(vaccineDoseNumber.get(i) + "/" + vaccineDoseNumberTotal.get(i));
+        }
     }
 
     @Override

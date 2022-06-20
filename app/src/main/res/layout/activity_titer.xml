@@ -28,7 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigationView"
-        android:layout_below="@+id/tvTiter_Title" />
+        android:layout_below="@+id/tvTiter_Title"
+        android:paddingBottom="10dp"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -38,6 +39,7 @@
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:itemIconTint="@drawable/bottom_navmenu_selector"
         app:itemBackground="@color/colorPrimary"
+        android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

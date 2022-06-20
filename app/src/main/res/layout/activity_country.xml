@@ -81,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:itemBackground="@color/colorPrimary"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/bottom_navmenu_selector"
         app:itemTextColor="@drawable/bottom_navmenu_selector"
         app:menu="@menu/bottom_navmenu" />
