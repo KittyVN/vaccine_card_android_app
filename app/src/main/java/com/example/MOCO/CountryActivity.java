@@ -129,95 +129,94 @@ public class CountryActivity extends AppCompatActivity {
             activity.countryRecommended.clear();
             activity.countryRecommendedWithoutDescription.clear();
 
+            if (recommendations.size() != 0) {
+                for (ImmunizationRecommendation recommendation : recommendations) {
 
-            for (ImmunizationRecommendation recommendation : recommendations) {
+                    if (recommendation.getExtension().size() > 0) {
+                        activity.countryName.add(recommendation.getExtension().get(0).getValue().toString());
+                    }
+                    //ArrayList<String> temp = new ArrayList<>();
+                    //ArrayList<String> temp1 = new ArrayList<>();
 
-                if (recommendation.getExtension().size() > 0){
-                    activity.countryName.add(recommendation.getExtension().get(0).getValue().toString());
-                }
-                //ArrayList<String> temp = new ArrayList<>();
-                //ArrayList<String> temp1 = new ArrayList<>();
-
-                for (int i = 0; i < recommendation.getRecommendation().size(); i++){
-                    if (recommendation.getRecommendation().get(i).hasDescription()){
-                        //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
-                        //activity.countryRecommended.add(temp);
-                        activity.countryRecommended.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
-                        activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
-                    }else if (!recommendation.getRecommendation().get(i).hasDescription()){
-                        //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
-                        //activity.countryNecessary.add(temp1);
-                        activity.countryNecessary.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
+                    for (int i = 0; i < recommendation.getRecommendation().size(); i++) {
+                        if (recommendation.getRecommendation().get(i).hasDescription()) {
+                            //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                            //activity.countryRecommended.add(temp);
+                            activity.countryRecommended.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
+                            activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
+                        } else if (!recommendation.getRecommendation().get(i).hasDescription()) {
+                            //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
+                            //activity.countryNecessary.add(temp1);
+                            activity.countryNecessary.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
+                        }
                     }
                 }
-            }
-            CountryNecessaryAdapter NAdapter;
-            CountryRecommendedAdapter RAdapter;
+                CountryNecessaryAdapter NAdapter;
+                CountryRecommendedAdapter RAdapter;
 
-            //set visibility of of hints above recyclers
-            activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
-            activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
-            activity.tvRecommendedHint.setVisibility(View.VISIBLE);
-            activity.tvNecessaryHint.setVisibility(View.VISIBLE);
+                //set visibility of of hints above recyclers
+                activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
+                activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
+                activity.tvRecommendedHint.setVisibility(View.VISIBLE);
+                activity.tvNecessaryHint.setVisibility(View.VISIBLE);
 
-            activity.cvNecessary = activity.findViewById(R.id.cvNecessary);
-            activity.cvRecommended = activity.findViewById(R.id.cvRecommended);
+                activity.cvNecessary = activity.findViewById(R.id.cvNecessary);
+                activity.cvRecommended = activity.findViewById(R.id.cvRecommended);
 
-            activity.cvNecessary.setVisibility(View.VISIBLE);
-            activity.cvRecommended.setVisibility(View.VISIBLE);
+                activity.cvNecessary.setVisibility(View.VISIBLE);
+                activity.cvRecommended.setVisibility(View.VISIBLE);
 
 
-            activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
-            activity.ivGlobe.setVisibility(View.INVISIBLE);
+                activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
+                activity.ivGlobe.setVisibility(View.INVISIBLE);
 
-            int counter = 0;
-            for (int j = 0; j < activity.countryNecessary.size(); j++){
-                counter = 0;
-                for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++){
-                    if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))){
-                        counter = counter+1;
+                int counter = 0;
+                for (int j = 0; j < activity.countryNecessary.size(); j++) {
+                    counter = 0;
+                    for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
+                        if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))) {
+                            counter = counter + 1;
+                        }
+                    }
+                    if (counter > 0) {
+                        activity.countryNecessaryBoolean.add(true);
+                    } else {
+                        activity.countryNecessaryBoolean.add(false);
                     }
                 }
-                if (counter>0){
-                    activity.countryNecessaryBoolean.add(true);
-                }else {
-                    activity.countryNecessaryBoolean.add(false);
-                }
-            }
 
-            for (int j = 0; j < activity.countryRecommendedWithoutDescription.size(); j++){
-                counter = 0;
-                for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
-                    if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
-                        counter = counter+1;
+                for (int j = 0; j < activity.countryRecommendedWithoutDescription.size(); j++) {
+                    counter = 0;
+                    for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
+                        if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
+                            counter = counter + 1;
+                        }
+                    }
+                    if (counter > 0) {
+                        activity.countryRecommendedBoolean.add(true);
+                    } else {
+                        activity.countryRecommendedBoolean.add(false);
                     }
                 }
-                if (counter>0){
-                    activity.countryRecommendedBoolean.add(true);
-                }else {
-                    activity.countryRecommendedBoolean.add(false);
-                }
+
+
+                NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary, activity.countryNecessaryBoolean);
+                RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean);
+
+                activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
+                activity.tvCountryName.setText(activity.countryName.get(0));
+
+                System.out.println("testout");
+
+                activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+                activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+
+                activity.rvNecessaryCountry.setAdapter(NAdapter);
+                activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+
+                activity.rvRecommendedCountry.setAdapter(RAdapter);
+                activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
             }
-
-
-            NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary,activity.countryNecessaryBoolean);
-            RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended,activity.countryRecommendedBoolean);
-
-            activity.tvCountryName= activity.findViewById(R.id.tvCountryName);
-            activity.tvCountryName.setText(activity.countryName.get(0));
-
-            System.out.println("testout");
-
-            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
-
-            activity.rvNecessaryCountry.setAdapter(NAdapter);
-            activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
-
-            activity.rvRecommendedCountry.setAdapter(RAdapter);
-            activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
-
-
         }
     }
 
