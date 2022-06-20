@@ -36,7 +36,7 @@ public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessa
     @Override
     public void onBindViewHolder(@NonNull CountryNecessaryViewHolder countryViewHolder, int i) {
         countryViewHolder.necessary.setText(countryNecessary.get(i));
-        if (countryNecessaryBoolean.get(i) == true){
+        if (!countryNecessaryBoolean.isEmpty() && countryNecessaryBoolean.get(i) == true){
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
         }else{
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);

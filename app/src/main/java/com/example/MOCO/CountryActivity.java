@@ -169,6 +169,20 @@ public class CountryActivity extends AppCompatActivity {
 
             activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
             activity.ivGlobe.setVisibility(View.INVISIBLE);
+            int counter = 0;
+            for (int j = 0; j < activity.countryNecessary.size(); j++){
+                counter = 0;
+                for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++){
+                    if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))){
+                        counter = counter+1;
+                    }
+                }
+                if (counter>0){
+                    activity.countryNecessaryBoolean.add(true);
+                }else {
+                    activity.countryNecessaryBoolean.add(false);
+                }
+            }
 
             for (int j = 0; j < activity.countryRecommendedWithoutDescription.size(); j++){
                 counter = 0;
@@ -185,7 +199,7 @@ public class CountryActivity extends AppCompatActivity {
             }
 
 
-                    NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary,activity.countryNecessaryBoolean);
+            NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary,activity.countryNecessaryBoolean);
             RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended,activity.countryRecommendedBoolean);
 
             activity.tvCountryName= activity.findViewById(R.id.tvCountryName);

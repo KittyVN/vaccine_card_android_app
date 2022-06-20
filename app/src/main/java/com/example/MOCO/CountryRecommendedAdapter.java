@@ -14,7 +14,6 @@ import java.util.List;
 public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecommendedAdapter.CountryRecommendedViewHolder>{
     private ArrayList<String> countryRecommended = new ArrayList<>();
     private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
-    private String recommended = "";
 
     private Context ctx;
 
