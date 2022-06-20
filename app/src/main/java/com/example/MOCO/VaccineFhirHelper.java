@@ -49,15 +49,17 @@ public class VaccineFhirHelper {
         }
 
 
-        public List<Immunization> getVacciness(String vaccine) {
-            // Invoke the client
-            Bundle bundle = client.search().forResource(Immunization.class)
-                    .where(new TokenClientParam("_id").exactly().code("ddbb5bfd-da9b-42a7-a1fb-79e08a16f394"))
-                    .prettyPrint()
-                    .returnBundle(Bundle.class)
-                    .execute();
-            return BundleUtil.toListOfResourcesOfType(ctx, bundle, Immunization.class);
-        }
+    public List<Immunization> getVacciness(String vaccine) {
+        // Invoke the client
+
+        String searchUrl = "Immunization?vaccine-code:text="+vaccine;
+
+        Bundle bundle = client.search()
+                .byUrl(searchUrl)
+                .returnBundle(Bundle.class)
+                .execute();
+        return BundleUtil.toListOfResourcesOfType(ctx, bundle, Immunization.class);
+    }
 
     public List<Immunization> getAllVacciness() {
         // Invoke the client
