@@ -56,9 +56,13 @@
 
             <TextView
                 android:id="@+id/tvLabor"
-                style="@style/recyclerText"
-                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_marginTop="4dp"
                 android:text="Text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/tvTiterValueTitle"
                 app:layout_constraintHorizontal_bias="0.0"

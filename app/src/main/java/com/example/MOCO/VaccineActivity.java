@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Immunization;
 
@@ -30,6 +31,8 @@ public class VaccineActivity extends AppCompatActivity {
     private Context ctx = this;
     private VaccineActivity activity = this;
     private String enteredSearchTarget;
+    TextView tvStatus;
+
 
 
     @Override
@@ -62,6 +65,8 @@ public class VaccineActivity extends AppCompatActivity {
 
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputVaccine);
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch1);
+        tvStatus = (TextView) findViewById(R.id.tvStatusSearch);
+        tvStatus.setText("Loading...");
         new VaccineTask(activity).execute();
 
 
@@ -70,6 +75,7 @@ public class VaccineActivity extends AppCompatActivity {
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 handled = true;
                 enteredSearchTarget = tvSearch.getText().toString();
+                tvStatus.setText("Loading...");
                 tvSearch.setText("");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -83,6 +89,7 @@ public class VaccineActivity extends AppCompatActivity {
         btnCountrySearch.setOnClickListener(v -> {
             enteredSearchTarget = tvSearch.getText().toString();
             tvSearch.setText("");
+            tvStatus.setText("Loading...");
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             new VaccineTask(activity).execute();
@@ -106,6 +113,7 @@ public class VaccineActivity extends AppCompatActivity {
         protected List<Immunization> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
             List<Immunization> listVaccines;
+
 
             if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null) {
                 listVaccines = gcm.getAllVaccines();
@@ -147,15 +155,22 @@ public class VaccineActivity extends AppCompatActivity {
                 }
                 Collections.sort(activity.allVaccines);
 
-                //get the references
-                //new VaccineTask1(activity).execute();
 
+                activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
+                activity.tvStatus.setText("");
+
+                VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.allVaccines);
+                activity.rvVaccine.setAdapter(vacAdapter);
+                activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            }else {
                 activity.rvVaccine = activity.findViewById(R.id.rvVaccine);
 
                 VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.allVaccines);
                 activity.rvVaccine.setAdapter(vacAdapter);
                 activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
+                activity.tvStatus.setText("Nothing found");
             }
+
         }
     }
 }
