@@ -3,12 +3,12 @@
     <string name="bottom_navmenu_home">Home</string>
     <string name="bottom_navmenu_country">Travel</string>
     <string name="bottom_navmenu_titer">Titer</string>
-    <string name="bottom_navmenu_vaccine">Vaccinations</string>
+    <string name="bottom_navmenu_vaccine">Immunizations</string>
     <string name="tvHome_welcome">Welcome back\nStephan</string>
-    <string name="tvHome_impfungen">Vaccinations</string>
-    <string name="tvHome_titer">Titer</string>
+    <string name="tvHome_impfungen">Immunizations</string>
+    <string name="tvHome_titer">Titers</string>
     <string name="tvHome_reisen"><![CDATA[Travelcheck]]></string>
     <string name="tvTravel_search"><![CDATA[Country]]></string>
-    <string name="tvVaccine_search"><![CDATA[Vaccine]]></string>
+    <string name="tvVaccine_search"><![CDATA[Immunization]]></string>
 
 </resources>
