@@ -293,7 +293,7 @@ public class CountryActivity extends AppCompatActivity {
                 activity.rvRecommendedCountry.setAdapter(RAdapter);
                 activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
             } else {
-                activity.ivGlobe.setBackgroundResource(R.drawable.rsz_3errglobe);
+                activity.ivGlobe.setBackgroundResource(R.drawable.globulierr);
                 activity.ivBigTrafficLight.setVisibility(View.INVISIBLE);
                 activity.tvCountryName.setVisibility(View.INVISIBLE);
                 activity.ivGlobe.setVisibility(View.VISIBLE);
