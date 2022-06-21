@@ -57,7 +57,6 @@
         android:layout_marginTop="25dp"
         android:layout_marginRight="16dp"
         android:contentInsetStart="0dp"
-
         android:gravity="start"
         android:lineSpacingExtra="8sp"
         android:text="@string/tvHome_welcome"
@@ -75,7 +74,7 @@
         android:layout_below="@id/tvHome_Welcome"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:backgroundTint="@color/colorVaccPrimary"
@@ -87,25 +86,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
         android:topLeftRadius="160dp" />
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnHome_Titer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnHome_Impfungen"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:backgroundTint="@color/colorTITERPrimary"
-        android:drawableStart="@drawable/home_titer"
-        android:drawableLeft="@drawable/home_titer"
-
-        android:lineSpacingExtra="8sp"
-        android:text="@string/tvHome_titer"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="20sp" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btnHome_Reisen"
@@ -126,6 +106,24 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
         app:itemBackground="@color/colorTravelPrimary" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Titer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnHome_Impfungen"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorTITERPrimary"
+        android:drawableStart="@drawable/home_titer"
+        android:drawableLeft="@drawable/home_titer"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/tvHome_titer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp" />
 
 
     <android.support.design.widget.BottomNavigationView

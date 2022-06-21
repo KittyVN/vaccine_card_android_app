@@ -61,7 +61,7 @@ public class CountryActivity extends AppCompatActivity {
     private TextView tvNecessaryHint;
     private ImageView ivGlobe;
     private ImageView ivBigTrafficLight;
-
+    private boolean found = false;
 
 
     @Override
@@ -153,12 +153,25 @@ public class CountryActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(List<ImmunizationRecommendation> recommendations) {
 
+            activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
+            activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
+            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+            activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
+            activity.ivBigTrafficLight = activity.findViewById(R.id.ivBigTrafficLight);
+            activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
+            activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
+            activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
             activity.countryName.clear();
             activity.countryNecessary.clear();
             activity.countryRecommended.clear();
             activity.countryNecessaryBoolean.clear();
             activity.countryRecommendedBoolean.clear();
             activity.countryRecommendedWithoutDescription.clear();
+            activity.rvRecommendedCountry.setVisibility(View.INVISIBLE);
+            activity.rvNecessaryCountry.setVisibility(View.INVISIBLE);
+            activity.tvRecommendedHint.setVisibility(View.INVISIBLE);
+            activity.tvNecessaryHint.setVisibility(View.INVISIBLE);
 
             if (recommendations.size() != 0) {
                 for (ImmunizationRecommendation recommendation : recommendations) {
@@ -186,19 +199,15 @@ public class CountryActivity extends AppCompatActivity {
                 CountryRecommendedAdapter RAdapter;
 
                 //set visibility of of hints above recyclers
-                activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
-                activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
+
                 activity.tvRecommendedHint.setVisibility(View.VISIBLE);
                 activity.tvNecessaryHint.setVisibility(View.VISIBLE);
 
-                activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-                activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
                 activity.rvRecommendedCountry.setVisibility(View.VISIBLE);
                 activity.rvNecessaryCountry.setVisibility(View.VISIBLE);
 
 
-                activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
                 activity.ivGlobe.setVisibility(View.INVISIBLE);
 
 
@@ -221,7 +230,7 @@ public class CountryActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            if (currentTime.before(expirationDate)){
+                            if (currentTime.before(expirationDate)) {
                                 counter = counter + 1;
                                 break;
                             }
@@ -252,23 +261,22 @@ public class CountryActivity extends AppCompatActivity {
 
 
                 NAdapter = new CountryNecessaryAdapter(activity.ctx, activity.countryNecessary, activity.countryNecessaryBoolean);
-                RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean,activity.countryRecommendedWithoutDescription);
+                RAdapter = new CountryRecommendedAdapter(activity.ctx, activity.countryRecommended, activity.countryRecommendedBoolean, activity.countryRecommendedWithoutDescription);
 
                 boolean hasAllNecessary = true;
                 boolean hasAllRecommended = true;
-                for(int i = 0; i < activity.countryNecessaryBoolean.size(); i++) {
-                    if(!activity.countryNecessaryBoolean.get(i)) {
+                for (int i = 0; i < activity.countryNecessaryBoolean.size(); i++) {
+                    if (!activity.countryNecessaryBoolean.get(i)) {
                         hasAllNecessary = false;
                     }
                 }
-                for(int i = 0; i < activity.countryRecommendedBoolean.size();i++) {
-                    if(!activity.countryRecommendedBoolean.get(i)) {
+                for (int i = 0; i < activity.countryRecommendedBoolean.size(); i++) {
+                    if (!activity.countryRecommendedBoolean.get(i)) {
                         hasAllRecommended = false;
                     }
                 }
-                activity.ivBigTrafficLight = activity.findViewById(R.id.ivBigTrafficLight);
 
-                if(hasAllNecessary) {
+                if (hasAllNecessary) {
                     activity.ivBigTrafficLight.setBackgroundResource(R.drawable.ampel_gelb);
                     if (hasAllRecommended) {
                         activity.ivBigTrafficLight.setBackgroundResource(R.drawable.ampel_gruen);
@@ -280,19 +288,21 @@ public class CountryActivity extends AppCompatActivity {
 
                 activity.ivBigTrafficLight.setVisibility(View.VISIBLE);
 
-
-
-                activity.tvCountryName = activity.findViewById(R.id.tvCountryName);
+                activity.tvCountryName.setVisibility(View.VISIBLE);
                 activity.tvCountryName.setText(activity.countryName.get(0));
 
-                activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
-                activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
 
                 activity.rvNecessaryCountry.setAdapter(NAdapter);
                 activity.rvNecessaryCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
 
                 activity.rvRecommendedCountry.setAdapter(RAdapter);
                 activity.rvRecommendedCountry.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            } else {
+                activity.ivGlobe.setBackgroundResource(R.drawable.rsz_3errglobe);
+                activity.ivBigTrafficLight.setVisibility(View.INVISIBLE);
+                activity.tvCountryName.setVisibility(View.INVISIBLE);
+                activity.ivGlobe.setVisibility(View.VISIBLE);
+
             }
         }
     }
