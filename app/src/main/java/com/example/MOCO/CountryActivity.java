@@ -3,7 +3,9 @@ package com.example.MOCO;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +27,7 @@ import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,8 +38,6 @@ public class CountryActivity extends AppCompatActivity {
     private Context ctx = this;
     private CountryActivity activity = this;
     private List<String> countryName = new ArrayList<String>();
-    private ArrayList<ArrayList<String>> countryNecessary1 = new ArrayList<ArrayList<String>>();
-    private ArrayList<ArrayList<String>> countryRecommended1 = new ArrayList<ArrayList<String>>();
 
     private ArrayList<String> countryNecessary = new ArrayList<>();
     private ArrayList<String> countryRecommended = new ArrayList<>();
@@ -56,7 +57,6 @@ public class CountryActivity extends AppCompatActivity {
     private TextView tvNecessaryHint;
     private ImageView ivGlobe;
     private ImageView ivBigTrafficLight;
-    private boolean found = false;
 
 
     @Override
@@ -148,6 +148,7 @@ public class CountryActivity extends AppCompatActivity {
 
             return listRecommendations;
         }
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected void onPostExecute(List<ImmunizationRecommendation> recommendations) {
 
@@ -177,18 +178,12 @@ public class CountryActivity extends AppCompatActivity {
                     if (recommendation.getExtension().size() > 0) {
                         activity.countryName.add(recommendation.getExtension().get(0).getValue().toString());
                     }
-                    //ArrayList<String> temp = new ArrayList<>();
-                    //ArrayList<String> temp1 = new ArrayList<>();
 
                     for (int i = 0; i < recommendation.getRecommendation().size(); i++) {
                         if (recommendation.getRecommendation().get(i).hasDescription()) {
-                            //temp.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay() + " - " + recommendation.getRecommendation().get(i).getDescription().toString());
-                            //activity.countryRecommended.add(temp);
                             activity.countryRecommended.add(recommendation.getRecommendation().get(i).getDescription());
                             activity.countryRecommendedWithoutDescription.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                         } else if (!recommendation.getRecommendation().get(i).hasDescription()) {
-                            //temp1.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
-                            //activity.countryNecessary.add(temp1);
                             activity.countryNecessary.add(recommendation.getRecommendation().get(i).getTargetDisease().getCoding().get(0).getDisplay());
                         }
                     }
@@ -209,30 +204,24 @@ public class CountryActivity extends AppCompatActivity {
                 activity.ivGlobe.setVisibility(View.INVISIBLE);
 
 
-                int counter = 0;
+                int counter;
                 for (int j = 0; j < activity.countryNecessary.size(); j++) {
                     counter = 0;
                     for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))) {
-                            SimpleDateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
 
-                            Date currentTimeTemp = Calendar.getInstance().getTime();
-                            String currentTimeTemp1 = currentTimeTemp.toString();
                             String expirationDateTemp = activity.allVaccineTargetDiseasesExpiration.get(i);
-                            Date currentTime = new Date();
-                            Date expirationDate = new Date();
+                            System.out.println(expirationDateTemp);
+                            Date c = new Date();
                             try {
-                                currentTime = format.parse(currentTimeTemp1);
-                                expirationDate = format.parse(expirationDateTemp);
-                            } catch (ParseException e) {
-                                e.printStackTrace();
+                                Date e = new SimpleDateFormat("yyyy-mm-dd").parse(expirationDateTemp);
+                                if (c.before(e)) {
+                                    counter = counter + 1;
+                                    break;
+                                }
+                            } catch (ParseException ex) {
+                                ex.printStackTrace();
                             }
-
-                            if (currentTime.before(expirationDate)) {
-                                counter = counter + 1;
-                                break;
-                            }
-
                         }
                     }
                     if (counter > 0) {
@@ -246,8 +235,18 @@ public class CountryActivity extends AppCompatActivity {
                     counter = 0;
                     for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
-                            counter = counter + 1;
-                            break;
+                            String expirationDateTemp = activity.allVaccineTargetDiseasesExpiration.get(i);
+                            System.out.println(expirationDateTemp);
+                            Date c = new Date();
+                            try {
+                                Date e = new SimpleDateFormat("yyyy-mm-dd").parse(expirationDateTemp);
+                                if (c.before(e)) {
+                                    counter = counter + 1;
+                                    break;
+                                }
+                            } catch (ParseException ex) {
+                                ex.printStackTrace();
+                            }
                         }
                     }
                     if (counter > 0) {
@@ -330,7 +329,7 @@ public class CountryActivity extends AppCompatActivity {
             for (Immunization vaccine : vaccines) {
                 for (int i = 0; i < vaccine.getProtocolApplied().get(0).getTargetDisease().size(); i++){
                     activity.allVaccineTargetDiseases.add(vaccine.getProtocolApplied().get(0).getTargetDisease().get(i).getCoding().get(0).getDisplay());
-                    activity.allVaccineTargetDiseasesExpiration.add(vaccine.getExpirationDate().toString());
+                    activity.allVaccineTargetDiseasesExpiration.add(vaccine.getExpirationDateElement().asStringValue());
                 }
             }
 
