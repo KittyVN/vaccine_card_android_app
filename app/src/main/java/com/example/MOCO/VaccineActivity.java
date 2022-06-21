@@ -19,14 +19,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Immunization;
-import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 
 import java.lang.ref.WeakReference;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import ca.uhn.fhir.parser.IParser;
 
 public class VaccineActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
@@ -126,13 +122,13 @@ public class VaccineActivity extends AppCompatActivity {
         }
         @Override
         protected List<Immunization> doInBackground(Void... voids) {
-            VaccineFhirHelper gcm = new VaccineFhirHelper();
+            FhirHelper gcm = new FhirHelper();
             List<Immunization> listVaccines = new ArrayList<>();
 
             if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null){
-                listVaccines = gcm.getAllVacciness();
+                listVaccines = gcm.getAllVaccines();
             }else {
-                listVaccines = gcm.getVacciness(activity.enteredSearchTarget);
+                listVaccines = gcm.getVaccines(activity.enteredSearchTarget);
             }
 
             return listVaccines;

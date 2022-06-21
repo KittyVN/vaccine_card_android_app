@@ -23,12 +23,44 @@
         android:textSize="35sp" />
 
 
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/textInputTiterLayout"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTiter_Title"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/textInputTiter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Titer"
+            android:inputType="text"
+            android:imeOptions="actionSend"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <ImageButton
+        android:id="@+id/btnSearch2"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/ic_baseline_search_24"
+        android:layout_below="@id/tvTiter_Title"
+        android:layout_toRightOf="@+id/textInputTiterLayout"/>
+
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvTiter"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigationView"
-        android:layout_below="@+id/tvTiter_Title"
+        android:layout_below="@+id/textInputTiterLayout"
         android:paddingBottom="10dp"/>
 
     <android.support.design.widget.BottomNavigationView

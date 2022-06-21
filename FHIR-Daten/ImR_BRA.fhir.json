@@ -1,6 +1,6 @@
 {
     "resourceType": "ImmunizationRecommendation",
-    "date": "2022-06-15",
+    "date": "2022-06-19",
     "patient": {
         "reference": "Patient/1"
     },
@@ -34,6 +34,36 @@
             "forecastStatus": {
                 "text": "due"
             }
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "32452004",
+                  "display": "Viral hepatitis type A"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          }
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "59881000",
+                  "display": "Rabies"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          }
         },
         {
             "targetDisease": {
@@ -74,8 +104,8 @@
                 "coding": [
                   {
                     "system": "http://snomed.info/sct",
-                    "code": "45170000",
-                    "display": "tick-borne encephalitis"
+                    "code": "4834000",
+                    "display": "Tythus"
                   }
                 ]
               },
@@ -84,13 +114,30 @@
                 "text": "due"
             },
 
-            "description": "from April to October"
+            "description": "visit with bad hygienic enviourment"
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "26630006",
+                  "display": "Yellow fever"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          },
+
+          "description": "If you are visiting a yellow fever region, this vaccionation is recomended"
         }
     ],
     "extension": [
         {
             "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusCountryName",
-            "valueString": "Norway"
+            "valueString": "Brazil"
         }
     ]
 }

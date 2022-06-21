@@ -8,7 +8,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -16,18 +15,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.hl7.fhir.r4.model.DateTimeType;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.ImmunizationRecommendation;
-import org.hl7.fhir.r4.model.Location;
 
 import java.lang.ref.WeakReference;
-import java.text.BreakIterator;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -143,7 +138,7 @@ public class CountryActivity extends AppCompatActivity {
         
         @Override
         protected List<ImmunizationRecommendation> doInBackground(Void... voids) {
-            VaccineFhirHelper gcm = new VaccineFhirHelper();
+            FhirHelper gcm = new FhirHelper();
 
             //List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
             List<ImmunizationRecommendation> listRecommendations = gcm.getRecommendation(activity.enteredSearchCountry);
@@ -317,11 +312,11 @@ public class CountryActivity extends AppCompatActivity {
 
         @Override
         protected List<Immunization> doInBackground(Void... voids) {
-            VaccineFhirHelper gcm = new VaccineFhirHelper();
+            FhirHelper gcm = new FhirHelper();
             CountryActivity activity = activityReference.get();
 
             //return list;
-            List<Immunization> listVaccines = gcm.getAllVacciness();
+            List<Immunization> listVaccines = gcm.getAllVaccines();
 
             return listVaccines;
         }
