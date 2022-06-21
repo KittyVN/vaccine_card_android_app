@@ -1,0 +1,66 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "03",
+                "display": "measles, mumps and rubella virus vaccine"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1992-10-20",
+    "expirationDate": "1993-10-20",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "BCD127548",
+    "manufacturer": {
+        "reference": "Organization/4",
+        "display": "Vaccion-manufacturer 1"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "14189004",
+                            "display": "measles"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "36989005",
+                            "display": "mumps"
+                        }
+                    ]
+                },
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "36653000",
+                            "display": "rubella virus"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 1,
+            "seriesDosesPositiveInt": 2
+        }
+    ]
+}
