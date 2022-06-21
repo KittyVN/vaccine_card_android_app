@@ -25,9 +25,30 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void test(){
+    public void getAllVaccines(){
         VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
 
         assertEquals(vaccineFhirHelper.getAllVacciness().size(),12);
+    }
+
+    @Test
+    public void getVaccinesSearch(){
+        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+
+        assertEquals(vaccineFhirHelper.getVacciness("diph").size(),5);
+    }
+
+    @Test
+    public void getAllTiters(){
+        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+
+        assertEquals(vaccineFhirHelper.getAllTiters().size(),5);
+    }
+
+    @Test
+    public void getAllRecommendations(){
+        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+
+        assertEquals(vaccineFhirHelper.getAllRecommendations().size(),4);
     }
 }
