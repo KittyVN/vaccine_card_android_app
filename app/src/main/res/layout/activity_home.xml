@@ -57,7 +57,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginRight="16dp"
         android:contentInsetStart="0dp"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:gravity="start"
         android:lineSpacingExtra="8sp"
         android:text="@string/tvHome_welcome"
@@ -81,7 +81,7 @@
         android:backgroundTint="@color/colorVaccPrimary"
         android:drawableEnd="@drawable/home_impfung"
         android:drawableRight="@drawable/home_impfung"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:lineSpacingExtra="8sp"
         android:text="@string/tvHome_impfungen"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -101,7 +101,7 @@
         android:backgroundTint="@color/colorTITERPrimary"
         android:drawableStart="@drawable/home_titer"
         android:drawableLeft="@drawable/home_titer"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:lineSpacingExtra="8sp"
         android:text="@string/tvHome_titer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -120,7 +120,7 @@
         android:backgroundTint="@color/colorTravelPrimary"
         android:drawableEnd="@drawable/home_reisen"
         android:drawableRight="@drawable/home_reisen"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:lineSpacingExtra="8sp"
         android:text="@string/tvHome_reisen"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

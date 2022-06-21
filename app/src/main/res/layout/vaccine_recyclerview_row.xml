@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 android:text="Immunization"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_marginRight="60dp"
-                android:fontFamily="sans-serif-condensed-light"
+
                 android:text="Text"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
@@ -51,7 +51,7 @@
                 android:id="@+id/tvHerstellerTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 android:layout_margin="5dp"
                 android:text="Manufacturer"
                 android:textStyle="bold"
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginTop="4dp"
-                android:fontFamily="sans-serif-condensed-light"
+
 
                 android:text="Text"
                 app:layout_constrainedWidth="true"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 android:text="Performer"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +91,7 @@
                 android:layout_margin="5dp"
                 android:layout_marginTop="8dp"
                 android:text="Text"
-                android:fontFamily="sans-serif-condensed-light"
+
 
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"
@@ -106,7 +106,7 @@
                 android:layout_margin="5dp"
                 android:text="Date"
                 android:textStyle="bold"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPerformer" />
 
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:fontFamily="sans-serif-condensed-light"
+
                 android:text="Text"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toStartOf="@id/tvLotNumberTitle"

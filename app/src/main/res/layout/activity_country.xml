@@ -15,7 +15,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/colorTravelPrimary"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:gravity="center"
         android:text="@string/tvHome_reisen"
         android:textAlignment="center"
@@ -131,7 +131,7 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="29dp"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 android:text="Highly recommended"
                 android:textSize="16sp"
                 android:visibility="invisible" />
@@ -154,7 +154,7 @@
                 android:layout_marginStart="22dp"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="29dp"
-                android:fontFamily="sans-serif-condensed-medium"
+
                 android:text="Optional"
                 android:textSize="16sp"
                 android:visibility="invisible" />
