@@ -36,7 +36,7 @@
                         {
                             "system": "http://snomed.info/sct",
                             "code": "14189004",
-                            "display": "measles"
+                            "display": "Measles"
                         }
                     ]
                 },
@@ -45,7 +45,7 @@
                         {
                             "system": "http://snomed.info/sct",
                             "code": "36989005",
-                            "display": "mumps"
+                            "display": "Mumps"
                         }
                     ]
                 },
@@ -54,7 +54,7 @@
                         {
                             "system": "http://snomed.info/sct",
                             "code": "36653000",
-                            "display": "rubella virus"
+                            "display": "Rubella virus"
                         }
                     ]
                 }
