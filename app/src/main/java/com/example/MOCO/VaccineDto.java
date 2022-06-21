@@ -112,7 +112,6 @@ public class VaccineDto implements Comparable {
     @Override
     public int compareTo(Object o) {
         if (o.getClass().equals(VaccineDto.class)) {
-            System.out.println(vaccineDate);
             return vaccineDate.compareTo(((VaccineDto) o).vaccineDate) * -1;
         } else {
             return 1;

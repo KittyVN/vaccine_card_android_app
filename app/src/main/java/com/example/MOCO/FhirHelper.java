@@ -4,10 +4,7 @@ import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Enumerations;
 import org.hl7.fhir.r4.model.Immunization;
 import org.hl7.fhir.r4.model.ImmunizationRecommendation;
-import org.hl7.fhir.r4.model.Location;
 import org.hl7.fhir.r4.model.Observation;
-import org.hl7.fhir.r4.model.Organization;
-import org.hl7.fhir.r4.model.Patient;
 import org.hl7.fhir.r4.model.SearchParameter;
 
 import java.util.List;
@@ -100,34 +97,6 @@ public class FhirHelper {
                 .returnBundle(Bundle.class)
                 .execute();
         return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
-    }
-
-
-    public List<ImmunizationRecommendation> getRecommendationsTest() {
-        Bundle bundle = client.search().forResource(ImmunizationRecommendation.class)
-                .where(new TokenClientParam("_id").exactly().code("a01d428f-2da5-462d-806b-6b7175068901"))
-                .prettyPrint()
-                .returnBundle(Bundle.class)
-                .execute();
-        return BundleUtil.toListOfResourcesOfType(ctx, bundle, ImmunizationRecommendation.class);
-    }
-
-
-    public Organization getOrganization(String ref) {
-        return client.read().resource(Organization.class).withId(ref).execute();
-    }
-
-    public Location getLocation(String ref) {
-        return client.read().resource(Location.class).withId(ref).execute();
-    }
-
-
-    public Patient getExamplePatient() {
-        return client.read().resource(Patient.class).withId("example").execute();
-    }
-
-    public IGenericClient getClient() {
-        return client;
     }
 
 }

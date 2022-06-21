@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
@@ -12,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
@@ -27,26 +24,25 @@ import org.hl7.fhir.r4.model.ImmunizationRecommendation;
 import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class CountryActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
     private Context ctx = this;
     private CountryActivity activity = this;
-    private List<String> countryName = new ArrayList<String>();
+    private List<String> countryName = new ArrayList<>();
 
     private ArrayList<String> countryNecessary = new ArrayList<>();
     private ArrayList<String> countryRecommended = new ArrayList<>();
 
-    private List<String> allVaccineTargetDiseases = new ArrayList<String>();
-    private List<String> allVaccineTargetDiseasesExpiration = new ArrayList<String>();
+    private List<String> allVaccineTargetDiseases = new ArrayList<>();
+    private List<String> allVaccineTargetDiseasesExpiration = new ArrayList<>();
     private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
     private ArrayList<Boolean> countryNecessaryBoolean = new ArrayList<>();
-    private ArrayList<String>  countryRecommendedWithoutDescription = new ArrayList<>();
+    private ArrayList<String> countryRecommendedWithoutDescription = new ArrayList<>();
 
 
     private RecyclerView rvNecessaryCountry;
@@ -66,61 +62,51 @@ public class CountryActivity extends AppCompatActivity {
 
         btmNavView = findViewById(R.id.bottomNavigationView);
         btmNavView.setSelectedItemId(R.id.bottomNavCountry);
-        btmNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        btmNavView.setOnNavigationItemSelectedListener(menuItem -> {
 
-                switch (menuItem.getItemId())
-                {
-                    case R.id.bottomNavVaccine:
-                        startActivity(new Intent(getApplicationContext(),VaccineActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.bottomNavTiter:
-                        startActivity(new Intent(getApplicationContext(),TiterActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.bottomNavHome:
-                        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.bottomNavCountry:
-                        return true;
-                }
-                return false;
+            switch (menuItem.getItemId()) {
+                case R.id.bottomNavVaccine:
+                    startActivity(new Intent(getApplicationContext(), VaccineActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.bottomNavTiter:
+                    startActivity(new Intent(getApplicationContext(), TiterActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.bottomNavHome:
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.bottomNavCountry:
+                    return true;
             }
+            return false;
         });
 
 
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch);
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputCountry);
 
-        tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    handled = true;
-                    enteredSearchCountry = tvSearch.getText().toString();
-                    tvSearch.setText("");
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    new CountryTask(activity).execute();
-                }
-                return handled;
-            }
-        });
-
-
-        btnCountrySearch.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                enteredSearchCountry = tvSearch.getText().toString();
+        tvSearch.setOnEditorActionListener((v, actionId, event) -> {
+            boolean handled = false;
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                handled = true;
+                enteredSearchCountry = Objects.requireNonNull(tvSearch.getText()).toString();
                 tvSearch.setText("");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 new CountryTask(activity).execute();
             }
+            return handled;
+        });
+
+
+        btnCountrySearch.setOnClickListener(v -> {
+            enteredSearchCountry = Objects.requireNonNull(tvSearch.getText()).toString();
+            tvSearch.setText("");
+            InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            new CountryTask(activity).execute();
         });
 
     }
@@ -135,19 +121,20 @@ public class CountryActivity extends AppCompatActivity {
             activityReference = new WeakReference<>(context);
             activity = activityReference.get();
         }
-        
+
         @Override
         protected List<ImmunizationRecommendation> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
 
             //List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
             List<ImmunizationRecommendation> listRecommendations = null;
-            if (activity.enteredSearchCountry != "") {
+            if (activity.enteredSearchCountry != null && !activity.enteredSearchCountry.equals("")) {
                 listRecommendations = gcm.getRecommendation(activity.enteredSearchCountry);
             }
 
             return listRecommendations;
         }
+
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected void onPostExecute(List<ImmunizationRecommendation> recommendations) {
@@ -172,7 +159,7 @@ public class CountryActivity extends AppCompatActivity {
             activity.tvRecommendedHint.setVisibility(View.INVISIBLE);
             activity.tvNecessaryHint.setVisibility(View.INVISIBLE);
 
-            if (recommendations.size() == 1) {
+            if (recommendations != null && recommendations.size() == 1) {
                 for (ImmunizationRecommendation recommendation : recommendations) {
 
                     if (recommendation.getExtension().size() > 0) {
@@ -211,10 +198,9 @@ public class CountryActivity extends AppCompatActivity {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryNecessary.get(j))) {
 
                             String expirationDateTemp = activity.allVaccineTargetDiseasesExpiration.get(i);
-                            System.out.println(expirationDateTemp);
                             Date c = new Date();
                             try {
-                                Date e = new SimpleDateFormat("yyyy-mm-dd").parse(expirationDateTemp);
+                                Date e = new SimpleDateFormat("yyyy-MM-dd").parse(expirationDateTemp);
                                 if (c.before(e)) {
                                     counter = counter + 1;
                                     break;
@@ -236,10 +222,9 @@ public class CountryActivity extends AppCompatActivity {
                     for (int i = 0; i < activity.allVaccineTargetDiseases.size(); i++) {
                         if (activity.allVaccineTargetDiseases.get(i).equals(activity.countryRecommendedWithoutDescription.get(j))) {
                             String expirationDateTemp = activity.allVaccineTargetDiseasesExpiration.get(i);
-                            System.out.println(expirationDateTemp);
                             Date c = new Date();
                             try {
-                                Date e = new SimpleDateFormat("yyyy-mm-dd").parse(expirationDateTemp);
+                                Date e = new SimpleDateFormat("yyyy-MM-dd").parse(expirationDateTemp);
                                 if (c.before(e)) {
                                     counter = counter + 1;
                                     break;
@@ -314,7 +299,6 @@ public class CountryActivity extends AppCompatActivity {
         @Override
         protected List<Immunization> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
-            CountryActivity activity = activityReference.get();
 
             //return list;
             List<Immunization> listVaccines = gcm.getAllVaccines();
@@ -327,7 +311,7 @@ public class CountryActivity extends AppCompatActivity {
             CountryActivity activity = activityReference.get();
 
             for (Immunization vaccine : vaccines) {
-                for (int i = 0; i < vaccine.getProtocolApplied().get(0).getTargetDisease().size(); i++){
+                for (int i = 0; i < vaccine.getProtocolApplied().get(0).getTargetDisease().size(); i++) {
                     activity.allVaccineTargetDiseases.add(vaccine.getProtocolApplied().get(0).getTargetDisease().get(i).getCoding().get(0).getDisplay());
                     activity.allVaccineTargetDiseasesExpiration.add(vaccine.getExpirationDateElement().asStringValue());
                 }

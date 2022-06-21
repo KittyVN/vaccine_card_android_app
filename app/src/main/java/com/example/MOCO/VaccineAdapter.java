@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 
 import java.util.List;
+import java.util.Objects;
 
 public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder> {
 
@@ -38,7 +39,7 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
         vaccineViewHolder.date.setText(allVaccines.get(i).getVaccineDate());
         vaccineViewHolder.lotNumber.setText(allVaccines.get(i).getVaccineLotNumber());
         vaccineViewHolder.performer.setText(allVaccines.get(i).getVaccinePerformer());
-        if (allVaccines.get(i).getVaccineSeriesNumberTotal() == "0") {
+        if (Objects.equals(allVaccines.get(i).getVaccineSeriesNumberTotal(), "0")) {
             vaccineViewHolder.doses.setText(allVaccines.get(i).getVaccineDoseNumber());
         } else {
             vaccineViewHolder.doses.setText(allVaccines.get(i).getVaccineDoseNumber() + "/" + allVaccines.get(i).getVaccineSeriesNumberTotal());

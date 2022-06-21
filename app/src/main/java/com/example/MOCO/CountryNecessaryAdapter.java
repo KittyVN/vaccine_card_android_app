@@ -1,9 +1,7 @@
 package com.example.MOCO;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessaryAdapter.CountryNecessaryViewHolder>{
-    private ArrayList<String> countryNecessary = new ArrayList<>();
-    private ArrayList<Boolean> countryNecessaryBoolean = new ArrayList<>();
+    private ArrayList<String> countryNecessary;
+    private ArrayList<Boolean> countryNecessaryBoolean;
     private Context ctx;
 
     public CountryNecessaryAdapter(Context ct, ArrayList<String> s1, ArrayList<Boolean> s2){
@@ -36,7 +33,7 @@ public class CountryNecessaryAdapter extends RecyclerView.Adapter<CountryNecessa
     @Override
     public void onBindViewHolder(@NonNull CountryNecessaryViewHolder countryViewHolder, int i) {
         countryViewHolder.necessary.setText(countryNecessary.get(i));
-        if (countryNecessaryBoolean.get(i) == true){
+        if (countryNecessaryBoolean.get(i)){
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
         }else{
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);

@@ -19,6 +19,7 @@ import org.hl7.fhir.r4.model.Observation;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class TiterActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
@@ -70,7 +71,7 @@ public class TiterActivity extends AppCompatActivity {
             boolean handled = false;
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 handled = true;
-                enteredSearchTarget = tvSearch.getText().toString();
+                enteredSearchTarget = Objects.requireNonNull(tvSearch.getText()).toString();
                 tvSearch.setText("");
                 tvStatus.setText("Loading...");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -83,7 +84,7 @@ public class TiterActivity extends AppCompatActivity {
 
 
         btnCountrySearch.setOnClickListener(v -> {
-            enteredSearchTarget = tvSearch.getText().toString();
+            enteredSearchTarget = Objects.requireNonNull(tvSearch.getText()).toString();
             tvSearch.setText("");
             tvStatus.setText("Loading...");
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -111,7 +112,7 @@ public class TiterActivity extends AppCompatActivity {
 
             List<Observation> listTiters;
 
-            if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null) {
+            if (activity.enteredSearchTarget == null || activity.enteredSearchTarget.equals("")) {
                 listTiters = gcm.getAllTiters();
             } else {
                 listTiters = gcm.getTiter(activity.enteredSearchTarget);
@@ -130,13 +131,13 @@ public class TiterActivity extends AppCompatActivity {
                 for (Observation titer : titers) {
                     TiterDto titerDto = new TiterDto();
                     titerDto.setTiterTyp(titer.getCode().getCoding().get(0).getDisplay());
-                    if (titer.getEffective() != null && titer.getEffective().fhirType() == "dateTime") {
+                    if (titer.getEffective() != null && titer.getEffective().fhirType().equals("dateTime")) {
                         titerDto.setTiterDate(titer.getEffectiveDateTimeType().asStringValue());
-                    } else if (titer.getEffective() != null && titer.getEffective().fhirType() == "Period") {
+                    } else if (titer.getEffective() != null && titer.getEffective().fhirType().equals("Period")) {
                         titerDto.setTiterDate(titer.getEffectivePeriod().getEnd().toString());
                     } else titerDto.setTiterDate("empty");
 
-                    if (titer.getValue() != null && titer.getValue().fhirType() == "Quantity") {
+                    if (titer.getValue() != null && titer.getValue().fhirType().equals("Quantity")) {
                         titerDto.setTiterValue(titer.getValueQuantity().getValue().toString() + " " +
                                 titer.getValueQuantity().getCode());
                     } else if (titer.getValue() != null) {
