@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Observation;
 
@@ -28,6 +29,7 @@ public class TiterActivity extends AppCompatActivity {
     private RecyclerView rvTiter;
     private Context ctx = this;
     private TiterActivity activity = this;
+    TextView tvStatus;
 
 
     @Override
@@ -60,6 +62,8 @@ public class TiterActivity extends AppCompatActivity {
 
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputTiter);
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch2);
+        tvStatus = (TextView) findViewById(R.id.tvStatusSearchTiter);
+        tvStatus.setText("Loading...");
         new TiterTask(this).execute();
 
         tvSearch.setOnEditorActionListener((v, actionId, event) -> {
@@ -68,6 +72,7 @@ public class TiterActivity extends AppCompatActivity {
                 handled = true;
                 enteredSearchTarget = tvSearch.getText().toString();
                 tvSearch.setText("");
+                tvStatus.setText("Loading...");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 new TiterTask(activity).execute();
@@ -80,6 +85,7 @@ public class TiterActivity extends AppCompatActivity {
         btnCountrySearch.setOnClickListener(v -> {
             enteredSearchTarget = tvSearch.getText().toString();
             tvSearch.setText("");
+            tvStatus.setText("Loading...");
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             new TiterTask(activity).execute();
@@ -152,6 +158,13 @@ public class TiterActivity extends AppCompatActivity {
                 TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.allTiter);
                 activity.rvTiter.setAdapter(titerAdapter);
                 activity.rvTiter.setLayoutManager(new LinearLayoutManager(activity.ctx));
+            }else {
+                activity.rvTiter = activity.findViewById(R.id.rvTiter);
+
+                TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.allTiter);
+                activity.rvTiter.setAdapter(titerAdapter);
+                activity.rvTiter.setLayoutManager(new LinearLayoutManager(activity.ctx));
+                activity.tvStatus.setText("Nothing found");
             }
         }
     }
