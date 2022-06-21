@@ -9,12 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecommendedAdapter.CountryRecommendedViewHolder>{
-    private ArrayList<String> countryRecommended = new ArrayList<>();
-    private ArrayList<Boolean> countryRecommendedBoolean = new ArrayList<>();
-    private ArrayList<String>  countryRecommendedWithoutDescription = new ArrayList<>();
+    private ArrayList<String> countryRecommended;
+    private ArrayList<Boolean> countryRecommendedBoolean;
+    private ArrayList<String>  countryRecommendedWithoutDescription;
 
     private Context ctx;
 
@@ -38,7 +37,7 @@ public class CountryRecommendedAdapter extends RecyclerView.Adapter<CountryRecom
     public void onBindViewHolder(@NonNull CountryRecommendedViewHolder countryViewHolder, int i) {
         countryViewHolder.recommendedDescription.setText(countryRecommended.get(i));
         countryViewHolder.recommendedTargetDisease.setText(countryRecommendedWithoutDescription.get(i));
-        if (!countryRecommendedBoolean.isEmpty() && countryRecommendedBoolean.get(i) == true){
+        if (!countryRecommendedBoolean.isEmpty() && countryRecommendedBoolean.get(i)){
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorGreenTraffic);
         }else{
             countryViewHolder.trafficBoolean.setBackgroundResource(R.color.colorRedTraffic);

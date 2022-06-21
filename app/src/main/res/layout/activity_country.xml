@@ -15,7 +15,6 @@
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/colorTravelPrimary"
-
         android:gravity="center"
         android:text="@string/tvHome_reisen"
         android:textAlignment="center"
@@ -23,15 +22,16 @@
         android:textSize="35sp" />
 
 
-
     <ImageView
         android:id="@+id/ivGlobe"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="430dp"
         android:layout_above="@id/bottomNavigationView"
         android:layout_below="@id/tvCountryName"
         android:layout_centerInParent="true"
-        android:background="@drawable/globe"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="70dp"
+        android:background="@drawable/globuli"
         android:visibility="visible" />
 
 
@@ -162,7 +162,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvRecommendedCountry"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
                 android:layout_below="@+id/tvRecommended"
                 android:visibility="invisible" />
 
