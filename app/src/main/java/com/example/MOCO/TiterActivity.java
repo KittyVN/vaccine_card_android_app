@@ -26,10 +26,10 @@ import java.util.List;
 
 public class TiterActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
-    private List<String> titerTyp = new ArrayList<String>();
-    private List<String> titerLabor = new ArrayList<String>();
-    private List<String> titerDate = new ArrayList<String>();
-    private List<String> titerValue = new ArrayList<String>();
+    private List<String> titerTyp = new ArrayList<>();
+    private List<String> titerLabor = new ArrayList<>();
+    private List<String> titerDate = new ArrayList<>();
+    private List<String> titerValue = new ArrayList<>();
 
     private String enteredSearchTarget;
     private RecyclerView rvTiter;
@@ -48,21 +48,20 @@ public class TiterActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                switch (menuItem.getItemId())
-                {
+                switch (menuItem.getItemId()) {
                     case R.id.bottomNavVaccine:
-                        startActivity(new Intent(getApplicationContext(),VaccineActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), VaccineActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.bottomNavTiter:
                         return true;
                     case R.id.bottomNavHome:
-                        startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.bottomNavCountry:
-                        startActivity(new Intent(getApplicationContext(),CountryActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), CountryActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
@@ -91,7 +90,7 @@ public class TiterActivity extends AppCompatActivity {
         });
 
 
-        btnCountrySearch.setOnClickListener( new View.OnClickListener() {
+        btnCountrySearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 enteredSearchTarget = tvSearch.getText().toString();
@@ -115,20 +114,22 @@ public class TiterActivity extends AppCompatActivity {
             activityReference = new WeakReference<>(context);
             activity = activityReference.get();
         }
+
         @Override
         protected List<Observation> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
 
             List<Observation> listTiters = new ArrayList<>();
 
-            if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null){
+            if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null) {
                 listTiters = gcm.getAllTiters();
-            }else {
+            } else {
                 listTiters = gcm.getTiter(activity.enteredSearchTarget);
             }
 
             return listTiters;
         }
+
         @Override
         protected void onPostExecute(List<Observation> titers) {
             TiterActivity activity = activityReference.get();
