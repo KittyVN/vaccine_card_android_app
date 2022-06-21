@@ -1,0 +1,48 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "122",
+                "display": "rotavirus vaccine"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1992-03-09",
+    "expirationDate": "1993-03-09",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "BFKD125168545",
+    "manufacturer": {
+        "reference": "Organization/7",
+        "display": "Vaccion-manufacturer 2"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "186150001",
+                            "display": "rotavirus"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 1,
+            "seriesDosesPositiveInt": 3
+        }
+    ]
+}
