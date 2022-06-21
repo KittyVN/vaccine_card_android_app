@@ -141,7 +141,10 @@ public class CountryActivity extends AppCompatActivity {
             FhirHelper gcm = new FhirHelper();
 
             //List<Location> listCountries = gcm.getLocations(activity.enteredSearchCountry);
-            List<ImmunizationRecommendation> listRecommendations = gcm.getRecommendation(activity.enteredSearchCountry);
+            List<ImmunizationRecommendation> listRecommendations = null;
+            if (activity.enteredSearchCountry != "") {
+                listRecommendations = gcm.getRecommendation(activity.enteredSearchCountry);
+            }
 
             return listRecommendations;
         }
@@ -168,7 +171,7 @@ public class CountryActivity extends AppCompatActivity {
             activity.tvRecommendedHint.setVisibility(View.INVISIBLE);
             activity.tvNecessaryHint.setVisibility(View.INVISIBLE);
 
-            if (recommendations.size() != 0) {
+            if (recommendations.size() == 1) {
                 for (ImmunizationRecommendation recommendation : recommendations) {
 
                     if (recommendation.getExtension().size() > 0) {
@@ -297,7 +300,6 @@ public class CountryActivity extends AppCompatActivity {
                 activity.ivBigTrafficLight.setVisibility(View.INVISIBLE);
                 activity.tvCountryName.setVisibility(View.INVISIBLE);
                 activity.ivGlobe.setVisibility(View.VISIBLE);
-
             }
         }
     }
