@@ -24,7 +24,7 @@
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/tvStatusSearch"
+        android:id="@+id/tvStatusSearchVaccine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"

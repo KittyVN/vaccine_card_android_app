@@ -65,7 +65,7 @@ public class VaccineActivity extends AppCompatActivity {
 
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputVaccine);
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch1);
-        tvStatus = (TextView) findViewById(R.id.tvStatusSearch);
+        tvStatus = (TextView) findViewById(R.id.tvStatusSearchVaccine);
         tvStatus.setText("Loading...");
         new VaccineTask(activity).execute();
 
