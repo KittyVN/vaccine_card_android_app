@@ -3,20 +3,15 @@ package com.example.MOCO;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import org.hl7.fhir.r4.model.Observation;
 
@@ -26,10 +21,8 @@ import java.util.List;
 
 public class TiterActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
-    private List<String> titerTyp = new ArrayList<>();
-    private List<String> titerLabor = new ArrayList<>();
-    private List<String> titerDate = new ArrayList<>();
-    private List<String> titerValue = new ArrayList<>();
+
+    private List<TiterDto> allTiter = new ArrayList<>();
 
     private String enteredSearchTarget;
     private RecyclerView rvTiter;
@@ -44,61 +37,52 @@ public class TiterActivity extends AppCompatActivity {
 
         btmNavView = findViewById(R.id.bottomNavigationView);
         btmNavView.setSelectedItemId(R.id.bottomNavTiter);
-        btmNavView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        btmNavView.setOnNavigationItemSelectedListener(menuItem -> {
 
-                switch (menuItem.getItemId()) {
-                    case R.id.bottomNavVaccine:
-                        startActivity(new Intent(getApplicationContext(), VaccineActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.bottomNavTiter:
-                        return true;
-                    case R.id.bottomNavHome:
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.bottomNavCountry:
-                        startActivity(new Intent(getApplicationContext(), CountryActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
+            switch (menuItem.getItemId()) {
+                case R.id.bottomNavVaccine:
+                    startActivity(new Intent(getApplicationContext(), VaccineActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.bottomNavTiter:
+                    return true;
+                case R.id.bottomNavHome:
+                    startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.bottomNavCountry:
+                    startActivity(new Intent(getApplicationContext(), CountryActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
             }
+            return false;
         });
 
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputTiter);
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch2);
         new TiterTask(this).execute();
 
-        tvSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    handled = true;
-                    enteredSearchTarget = tvSearch.getText().toString();
-                    tvSearch.setText("");
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    new TiterTask(activity).execute();
-
-                }
-                return handled;
-            }
-        });
-
-
-        btnCountrySearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        tvSearch.setOnEditorActionListener((v, actionId, event) -> {
+            boolean handled = false;
+            if (actionId == EditorInfo.IME_ACTION_SEND) {
+                handled = true;
                 enteredSearchTarget = tvSearch.getText().toString();
                 tvSearch.setText("");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 new TiterTask(activity).execute();
+
             }
+            return handled;
+        });
+
+
+        btnCountrySearch.setOnClickListener(v -> {
+            enteredSearchTarget = tvSearch.getText().toString();
+            tvSearch.setText("");
+            InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            new TiterTask(activity).execute();
         });
 
 
@@ -119,7 +103,7 @@ public class TiterActivity extends AppCompatActivity {
         protected List<Observation> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
 
-            List<Observation> listTiters = new ArrayList<>();
+            List<Observation> listTiters;
 
             if (activity.enteredSearchTarget == "" || activity.enteredSearchTarget == null) {
                 listTiters = gcm.getAllTiters();
@@ -134,38 +118,38 @@ public class TiterActivity extends AppCompatActivity {
         protected void onPostExecute(List<Observation> titers) {
             TiterActivity activity = activityReference.get();
 
-            activity.titerDate.clear();
-            activity.titerLabor.clear();
-            activity.titerTyp.clear();
-            activity.titerValue.clear();
+            activity.allTiter.clear();
 
             if (titers.size() != 0) {
                 for (Observation titer : titers) {
-                    activity.titerTyp.add(titer.getCode().getCoding().get(0).getDisplay());
+                    TiterDto titerDto = new TiterDto();
+                    titerDto.setTiterTyp(titer.getCode().getCoding().get(0).getDisplay());
                     if (titer.getEffective() != null && titer.getEffective().fhirType() == "dateTime") {
-                        activity.titerDate.add(titer.getEffectiveDateTimeType().asStringValue());
+                        titerDto.setTiterDate(titer.getEffectiveDateTimeType().asStringValue());
                     } else if (titer.getEffective() != null && titer.getEffective().fhirType() == "Period") {
-                        activity.titerDate.add(titer.getEffectivePeriod().getEnd().toString());
-                    } else activity.titerDate.add("empty");
+                        titerDto.setTiterDate(titer.getEffectivePeriod().getEnd().toString());
+                    } else titerDto.setTiterDate("empty");
 
                     if (titer.getValue() != null && titer.getValue().fhirType() == "Quantity") {
-                        activity.titerValue.add(titer.getValueQuantity().getValue().toString() + " " + titer.getValueQuantity().getCode());
+                        titerDto.setTiterValue(titer.getValueQuantity().getValue().toString() + " " +
+                                titer.getValueQuantity().getCode());
                     } else if (titer.getValue() != null) {
-                        activity.titerValue.add(titer.getValue().fhirType());
+                        titerDto.setTiterValue(titer.getValue().fhirType());
                     } else {
-                        activity.titerValue.add("no value");
+                        titerDto.setTiterValue("no value");
                     }
 
                     if (titer.getPerformer().size() > 0) {
-                        activity.titerLabor.add(titer.getPerformer().get(0).getDisplay());
+                        titerDto.setTiterLabor(titer.getPerformer().get(0).getDisplay());
                     } else {
-                        activity.titerLabor.add("Unknown");
+                        titerDto.setTiterLabor("Unknown");
                     }
 
+                    activity.allTiter.add(titerDto);
                 }
                 activity.rvTiter = activity.findViewById(R.id.rvTiter);
 
-                TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.titerTyp, activity.titerLabor, activity.titerDate, activity.titerValue);
+                TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.allTiter);
                 activity.rvTiter.setAdapter(titerAdapter);
                 activity.rvTiter.setLayoutManager(new LinearLayoutManager(activity.ctx));
             }
