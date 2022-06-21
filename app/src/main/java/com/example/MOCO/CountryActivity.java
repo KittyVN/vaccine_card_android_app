@@ -222,6 +222,7 @@ public class CountryActivity extends AppCompatActivity {
                             } catch (ParseException ex) {
                                 ex.printStackTrace();
                             }
+
                         }
                     }
                     if (counter > 0) {

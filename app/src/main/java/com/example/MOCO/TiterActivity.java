@@ -155,6 +155,7 @@ public class TiterActivity extends AppCompatActivity {
                 }
                 activity.rvTiter = activity.findViewById(R.id.rvTiter);
 
+                activity.tvStatus.setText("");
                 TiterAdapter titerAdapter = new TiterAdapter(activity.ctx, activity.allTiter);
                 activity.rvTiter.setAdapter(titerAdapter);
                 activity.rvTiter.setLayoutManager(new LinearLayoutManager(activity.ctx));

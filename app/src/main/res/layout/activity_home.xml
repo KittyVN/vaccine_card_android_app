@@ -6,53 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <!--<TextView
-        android:id="@+id/PatientBasicInfo_patientNameTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="30dp"
-        android:text="patient name" />
 
-    <TextView
-        android:id="@+id/patientBasicInfo_birthDateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/PatientBasicInfo_patientNameTextView"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textSize="15dp"
-        android:text="Birth Date" />
-
-    <TextView
-        android:id="@+id/patientBasicInfo_genderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/patientBasicInfo_birthDateTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Gender"
-        android:textSize="15dp" />
-
-    <TextView
-        android:id="@+id/patientBasicInfo_addressTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/patientBasicInfo_genderTextView"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Address"
-        android:textSize="15dp" />
-        -->
     <TextView
         android:id="@+id/tvHome_Welcome"
-        android:layout_width="377dp"
-        android:layout_height="211dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
         android:layout_marginTop="25dp"
         android:layout_marginRight="16dp"
