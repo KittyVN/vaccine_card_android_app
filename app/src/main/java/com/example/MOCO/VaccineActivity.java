@@ -20,7 +20,6 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class VaccineActivity extends AppCompatActivity {
     private BottomNavigationView btmNavView;
@@ -75,7 +74,7 @@ public class VaccineActivity extends AppCompatActivity {
             boolean handled = false;
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 handled = true;
-                enteredSearchTarget = Objects.requireNonNull(tvSearch.getText()).toString();
+                enteredSearchTarget = tvSearch.getText().toString();
                 tvStatus.setText("Loading...");
                 tvSearch.setText("");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -88,7 +87,7 @@ public class VaccineActivity extends AppCompatActivity {
 
 
         btnCountrySearch.setOnClickListener(v -> {
-            enteredSearchTarget = Objects.requireNonNull(tvSearch.getText()).toString();
+            enteredSearchTarget = tvSearch.getText().toString();
             tvSearch.setText("");
             tvStatus.setText("Loading...");
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);

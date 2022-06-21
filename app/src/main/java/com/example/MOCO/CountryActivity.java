@@ -102,7 +102,7 @@ public class CountryActivity extends AppCompatActivity {
 
 
         btnCountrySearch.setOnClickListener(v -> {
-            enteredSearchCountry = Objects.requireNonNull(tvSearch.getText()).toString();
+            enteredSearchCountry = tvSearch.getText().toString();
             tvSearch.setText("");
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
