@@ -26,29 +26,37 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void getAllVaccines(){
-        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+        FhirHelper FhirHelper = new FhirHelper();
 
-        assertEquals(vaccineFhirHelper.getAllVacciness().size(),12);
+        assertEquals(FhirHelper.getAllVaccines().size(),20);
     }
 
     @Test
     public void getVaccinesSearch(){
-        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+        FhirHelper FhirHelper = new FhirHelper();
 
-        assertEquals(vaccineFhirHelper.getVacciness("diph").size(),5);
+        assertEquals(FhirHelper.getVaccines("diph").size(),5);
     }
 
     @Test
     public void getAllTiters(){
-        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+        FhirHelper FhirHelper = new FhirHelper();
 
-        assertEquals(vaccineFhirHelper.getAllTiters().size(),5);
+        assertEquals(FhirHelper.getAllTiters().size(),5);
     }
 
     @Test
-    public void getAllRecommendations(){
-        VaccineFhirHelper vaccineFhirHelper = new VaccineFhirHelper();
+    public void getTiterSearch(){
+        FhirHelper FhirHelper = new FhirHelper();
 
-        assertEquals(vaccineFhirHelper.getAllRecommendations().size(),4);
+        assertEquals(FhirHelper.getTiter("diph").size(),0);
+        assertEquals(FhirHelper.getTiter("s").size(),3);
+    }
+
+    @Test
+    public void getRecommendation(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getRecommendation("Brazil").size(),1);
     }
 }
