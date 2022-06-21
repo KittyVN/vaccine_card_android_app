@@ -1,0 +1,48 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "08",
+                "display": "hepatitis B vaccine, pediatric or pediatric/adolescent dosage"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1992-11-18",
+    "expirationDate": "2025-11-18",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "HGPF21376525",
+    "manufacturer": {
+        "reference": "Organization/7",
+        "display": "Vaccion-manufacturer 2"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "66071002",
+                            "display": "Viral hepatitis type B"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 3,
+            "seriesDosesPositiveInt": 3
+        }
+    ]
+}

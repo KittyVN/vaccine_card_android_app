@@ -16,7 +16,7 @@
         android:drawableStart="@drawable/rounded_corners"
         android:drawableLeft="@drawable/rounded_corners"
         android:background="@color/colorVaccPrimary"
-        android:fontFamily="sans-serif-condensed-medium"
+
         android:gravity="center"
         android:text="@string/tvHome_impfungen"
         android:textAlignment="center"

@@ -1,10 +1,11 @@
 {
     "resourceType": "Observation",
-    "id": "Obs010",
+    "id": "Obs003",
     "subject": {
-        "reference": "Patient/100",
+        "reference": "Patient/1",
         "display": "Stepfan Graf - m"
     },
+    "status": "final",
     "code": {
         "coding": [
             {
@@ -14,15 +15,16 @@
             }
         ]
     },
-    "effectiveDateTime": "2021-12-23",
+    "effectiveDateTime": "2022-05-25",
     "performer": [
         {
-            "reference": "Organization/200",
-            "display": "Labor Landstraße"
+            "reference": "Organization/6",
+            "display": "labor 2"
         }
     ],
     "valueQuantity": {
-        "unit": "BAU/ml",
-        "value": 108900
+        "system": "http://unitsofmeasure.org",
+        "code": "BAU/ml",
+        "value": 83700
     }
 }
