@@ -66,7 +66,7 @@ public class VaccineActivity extends AppCompatActivity {
         TextInputEditText tvSearch = (TextInputEditText) findViewById(R.id.textInputVaccine);
         ImageButton btnCountrySearch = (ImageButton) findViewById(R.id.btnSearch1);
         tvStatus = (TextView) findViewById(R.id.tvStatusSearchVaccine);
-        tvStatus.setText("Loading...");
+        tvStatus.setText(R.string.loading);
         new VaccineTask(activity).execute();
 
 
@@ -75,7 +75,7 @@ public class VaccineActivity extends AppCompatActivity {
             if (actionId == EditorInfo.IME_ACTION_SEND) {
                 handled = true;
                 enteredSearchTarget = tvSearch.getText().toString();
-                tvStatus.setText("Loading...");
+                tvStatus.setText(R.string.loading);
                 tvSearch.setText("");
                 InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
@@ -89,7 +89,7 @@ public class VaccineActivity extends AppCompatActivity {
         btnCountrySearch.setOnClickListener(v -> {
             enteredSearchTarget = tvSearch.getText().toString();
             tvSearch.setText("");
-            tvStatus.setText("Loading...");
+            tvStatus.setText(R.string.loading);
             InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             new VaccineTask(activity).execute();
@@ -168,7 +168,7 @@ public class VaccineActivity extends AppCompatActivity {
                 VaccineAdapter vacAdapter = new VaccineAdapter(activity.ctx, activity.allVaccines);
                 activity.rvVaccine.setAdapter(vacAdapter);
                 activity.rvVaccine.setLayoutManager(new LinearLayoutManager(activity.ctx));
-                activity.tvStatus.setText("Nothing found");
+                activity.tvStatus.setText(R.string.nothingFound);
             }
 
         }

@@ -140,7 +140,7 @@ public class CountryActivity extends AppCompatActivity {
         protected void onPostExecute(List<ImmunizationRecommendation> recommendations) {
 
             activity.tvRecommendedHint = activity.findViewById(R.id.tvRecommended);
-            activity.tvNecessaryHint = activity.findViewById(R.id.tvNescessary);
+            activity.tvNecessaryHint = activity.findViewById(R.id.tvNecessary);
             activity.rvNecessaryCountry = activity.findViewById(R.id.rvNecessaryCountry);
             activity.rvRecommendedCountry = activity.findViewById(R.id.rvRecommendedCountry);
             activity.ivGlobe = activity.findViewById(R.id.ivGlobe);
@@ -301,10 +301,8 @@ public class CountryActivity extends AppCompatActivity {
         protected List<Immunization> doInBackground(Void... voids) {
             FhirHelper gcm = new FhirHelper();
 
-            //return list;
-            List<Immunization> listVaccines = gcm.getAllVaccines();
 
-            return listVaccines;
+            return gcm.getAllVaccines();
         }
 
         @Override

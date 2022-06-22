@@ -13,12 +13,13 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
+        android:drawableStart="@drawable/rounded_corners"
+        android:drawableLeft="@drawable/rounded_corners"
         android:background="@color/colorTITERPrimary"
 
         android:gravity="center"
         android:text="@string/tvHome_titer"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@android:color/white"
         android:textSize="35sp" />
 
@@ -40,14 +41,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTiter_Title"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="12dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/textInputTiter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:hint="Titer"
+            android:hint="@string/titer"
             android:inputType="text"
             android:imeOptions="actionSend"/>
 
@@ -58,10 +60,13 @@
         android:id="@+id/btnSearch2"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="10dp"
         app:srcCompat="@drawable/ic_baseline_search_24"
         android:layout_below="@id/tvTiter_Title"
-        android:layout_toRightOf="@+id/textInputTiterLayout"/>
+        android:layout_toRightOf="@+id/textInputTiterLayout"
+        android:layout_marginStart="10dp"
+        android:contentDescription="@string/buttonDescription" />
 
 
 

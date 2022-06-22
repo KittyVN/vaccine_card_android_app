@@ -32,7 +32,8 @@
         android:layout_marginHorizontal="40dp"
         android:layout_marginVertical="70dp"
         android:background="@drawable/globuli"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:contentDescription="@string/contentDescriptionGlobe" />
 
 
     <android.support.design.widget.TextInputLayout
@@ -41,7 +42,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvCountry_Title"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="12dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/textInputCountry"
@@ -55,24 +57,19 @@
     </android.support.design.widget.TextInputLayout>
 
     <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginRight="12dp"
-            android:layout_below="@id/tvCountry_Title"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/textInputCountryLayout"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
-
-    <!--<android.support.v7.widget.RecyclerView
-        android:id="@+id/rvCountry"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/bottomNavigationView"
-        android:layout_below="@+id/textInputCountryLayout"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="-1dp" />-->
-
+        android:layout_below="@id/tvCountry_Title"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="10dp"
+        android:layout_toRightOf="@+id/textInputCountryLayout"
+        app:srcCompat="@drawable/ic_baseline_search_24"
+        android:layout_marginEnd="12dp"
+        android:layout_toEndOf="@+id/textInputCountryLayout"
+        android:layout_marginLeft="10dp"
+        android:contentDescription="@string/buttonDescription" />
 
 
     <TextView
@@ -108,7 +105,7 @@
         app:menu="@menu/bottom_navmenu"
         />
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView"
@@ -122,7 +119,7 @@
 
 
             <TextView
-                android:id="@+id/tvNescessary"
+                android:id="@+id/tvNecessary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvCountryName"
@@ -132,7 +129,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="29dp"
 
-                android:text="Highly recommended"
+                android:text="@string/highlyRecommended"
                 android:textSize="16sp"
                 android:visibility="invisible" />
 
@@ -140,7 +137,7 @@
                 android:id="@+id/rvNecessaryCountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvNescessary"
+                android:layout_below="@+id/tvNecessary"
                 android:paddingBottom="14dp"
                 android:visibility="invisible" />
 
@@ -155,7 +152,7 @@
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="29dp"
 
-                android:text="Optional"
+                android:text="@string/optional"
                 android:textSize="16sp"
                 android:visibility="invisible" />
 

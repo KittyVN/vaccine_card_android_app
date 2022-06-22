@@ -10,5 +10,22 @@
     <string name="tvHome_reisen"><![CDATA[Travelcheck]]></string>
     <string name="tvTravel_search"><![CDATA[Country]]></string>
     <string name="tvVaccine_search"><![CDATA[Immunization]]></string>
+    <string name="loading">Loading…</string>
+    <string name="nothingFound">Nothing found</string>
+    <string name="highlyRecommended">Highly recommended</string>
+    <string name="optional">Optional</string>
+    <string name="titer">Titer</string>
+    <string name="textPlaceholder">Text</string>
+    <string name="immunization">Immunization</string>
+    <string name="type">Type</string>
+    <string name="laboratory">Laboratory</string>
+    <string name="date">Date</string>
+    <string name="value">Value</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="performer">Performer</string>
+    <string name="lotnumber">Lotnumber</string>
+    <string name="dose">Dose</string>
+    <string name="contentDescriptionGlobe">picture of a globe</string>
+    <string name="buttonDescription">Button to start the search</string>
 
 </resources>
