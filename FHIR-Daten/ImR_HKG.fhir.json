@@ -65,7 +65,7 @@
                 "text": "due"
             },
 
-            "description": "Close social contacts or long term visit"
+            "description": "Close social contacts or long-term visit"
         },
         {
             "targetDisease": {
@@ -99,7 +99,7 @@
                 "text": "due"
             },
 
-            "description": "visit with bad hygienic enviourment"
+            "description": "visit with bad hygienic environment"
         },
         {
           "targetDisease": {
@@ -116,7 +116,7 @@
               "text": "due"
           },
 
-          "description": "visiting the country side or long visit (over 2 weeks)"
+          "description": "visiting the countryside or long visit (over 2 weeks)"
         }
     ],
     "extension": [

@@ -129,7 +129,7 @@
               "text": "due"
           },
 
-          "description": "for long outdore travel"
+          "description": "for long outdoor travel"
         },
         {
           "targetDisease": {
@@ -163,7 +163,7 @@
                 "text": "due"
             },
 
-            "description": "visit with bad hygienic enviourment"
+            "description": "visit with bad hygienic environment"
         }
     ],
     "extension": [
