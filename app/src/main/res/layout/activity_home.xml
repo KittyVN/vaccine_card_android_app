@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+
+    <TextView
+        android:id="@+id/tvHome_Welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="16dp"
+        android:gravity="start"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/tvHome_welcome"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@android:color/black"
+        android:textSize="56sp"
+        android:typeface="normal"
+        android:layout_marginStart="22dp"
+        android:layout_marginEnd="16dp" />
+
+    <android.support.v7.widget.AppCompatButton
+
+        android:id="@+id/btnHome_Impfungen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHome_Welcome"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorVaccPrimary"
+        android:drawableEnd="@drawable/home_impfung"
+        android:drawableRight="@drawable/home_impfung"
+
+        android:lineSpacingExtra="8sp"
+        android:text="@string/tvHome_impfungen"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        android:topLeftRadius="160dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Reisen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnHome_Titer"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorTravelPrimary"
+        android:drawableEnd="@drawable/home_reisen"
+        android:drawableRight="@drawable/home_reisen"
+
+        android:lineSpacingExtra="8sp"
+        android:text="@string/tvHome_reisen"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp"
+        app:itemBackground="@color/colorTravelPrimary" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnHome_Titer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnHome_Impfungen"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorTITERPrimary"
+        android:drawableStart="@drawable/home_titer"
+        android:drawableLeft="@drawable/home_titer"
+        android:lineSpacingExtra="8sp"
+        android:text="@string/tvHome_titer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="20sp" />
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:itemBackground="@color/colorPrimary"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@drawable/bottom_navmenu_selector"
+        app:itemTextColor="@drawable/bottom_navmenu_selector"
+        app:menu="@menu/bottom_navmenu"
+        />
+
+</RelativeLayout>

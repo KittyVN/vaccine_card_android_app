@@ -1,0 +1,48 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "103",
+                "display": "meningococcal C conjugate vaccine"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1993-02-25",
+    "expirationDate": "2003-02-25",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "LOPF21068477005",
+    "manufacturer": {
+        "reference": "Organization/7",
+        "display": "Vaccion-manufacturer 2"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "192644005",
+                            "display": "Meningitis"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 1,
+            "seriesDosesPositiveInt": 1
+        }
+    ]
+}

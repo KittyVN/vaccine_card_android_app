@@ -1,0 +1,48 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "52",
+                "display": "hepatitis A vaccine, adult dosage"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "2022-02-28",
+    "expirationDate": "2037-02-28",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/5",
+                "display": "Vaccination-Center"
+            }
+        }
+    ],
+    "lotNumber": "LKPF21093405",
+    "manufacturer": {
+        "reference": "Organization/7",
+        "display": "Vaccion-manufacturer 2"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "32452004",
+                            "display": "Viral hepatitis type A"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 2,
+            "seriesDosesPositiveInt": 2
+        }
+    ]
+}

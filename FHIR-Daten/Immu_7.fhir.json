@@ -1,0 +1,48 @@
+{
+    "resourceType": "Immunization",
+    "status": "completed",
+    "vaccineCode": {
+        "coding": [
+            {
+                "system": "http://hl7.org/fhir/sid/cvx",
+                "code": "122",
+                "display": "rotavirus vaccine"
+            }
+        ]
+    },
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "occurrenceDateTime": "1992-05-04",
+    "expirationDate": "2050-03-09",
+    "performer": [
+        {
+            "actor": {
+                "reference": "Organization/2",
+                "display": "Stadt Wien - Impfaktion"
+            }
+        }
+    ],
+    "lotNumber": "BCD1275646",
+    "manufacturer": {
+        "reference": "Organization/7",
+        "display": "Vaccion-manufacturer 2"
+    },
+    "protocolApplied": [
+        {
+            "targetDisease": [
+                {
+                    "coding": [
+                        {
+                            "system": "http://snomed.info/sct",
+                            "code": "186150001",
+                            "display": "rotavirus"
+                        }
+                    ]
+                }
+            ],
+            "doseNumberPositiveInt": 3,
+            "seriesDosesPositiveInt": 3
+        }
+    ]
+}

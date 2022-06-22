@@ -23,4 +23,40 @@ public class ExampleInstrumentedTest {
 
         assertEquals("com.example.myfirstapp", appContext.getPackageName());
     }
+
+    @Test
+    public void getAllVaccines(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getAllVaccines().size(),20);
+    }
+
+    @Test
+    public void getVaccinesSearch(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getVaccines("diph").size(),5);
+    }
+
+    @Test
+    public void getAllTiters(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getAllTiters().size(),5);
+    }
+
+    @Test
+    public void getTiterSearch(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getTiter("diph").size(),0);
+        assertEquals(FhirHelper.getTiter("s").size(),3);
+    }
+
+    @Test
+    public void getRecommendation(){
+        FhirHelper FhirHelper = new FhirHelper();
+
+        assertEquals(FhirHelper.getRecommendation("Brazil").size(),1);
+    }
 }

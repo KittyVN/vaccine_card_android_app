@@ -1,0 +1,30 @@
+{
+    "resourceType": "Observation",
+    "id": "Obs002",
+    "subject": {
+        "reference": "Patient/1",
+        "display": "Stepfan Graf - m"
+    },
+    "status": "final",
+    "code": {
+        "coding": [
+            {
+                "system": "http://loinc.org",
+                "code": "95429-7",
+                "display": "SARS-CoV-2 (COVID-19) IgG IF [Titer]"
+            }
+        ]
+    },
+    "effectiveDateTime": "2021-12-20",
+    "performer": [
+        {
+            "reference": "Organization/6",
+            "display": "labor 2"
+        }
+    ],
+    "valueQuantity": {
+        "system": "http://unitsofmeasure.org",
+        "code": "BAU/ml",
+        "value": 108900
+    }
+}

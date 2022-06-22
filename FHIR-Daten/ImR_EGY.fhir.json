@@ -1,0 +1,177 @@
+{
+    "resourceType": "ImmunizationRecommendation",
+    "date": "2022-06-19",
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "recommendation": [
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "397430003",
+                    "display": "Diphtheriae"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "76902006",
+                    "display": "Tetanus"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "398102009",
+                  "display": "Polio"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          }
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "32452004",
+                  "display": "Viral hepatitis type A"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          }
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "66071002",
+                    "display": "Viral hepatitis type B"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Close social contacts or long term visit"
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "14189004",
+                    "display": "Measles"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Only for children"
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "59881000",
+                  "display": "Rabies"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          },
+
+          "description": "for long outdore travel"
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "192644005",
+                  "display": "Meningitis"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          },
+
+          "description": "Close social contacts or long term visit"
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "4834000",
+                    "display": "Tythus"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "visit with bad hygienic enviourment"
+        },
+        {
+          "targetDisease": {
+              "coding": [
+                {
+                  "system": "http://snomed.info/sct",
+                  "code": "26630006",
+                  "display": "Yellow fever"
+                }
+              ]
+            },
+
+          "forecastStatus": {
+              "text": "due"
+          },
+
+          "description": "If you are from a yellow fever region, this vaccionation is mandatory"
+        }
+    ],
+    "extension": [
+        {
+            "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusCountryName",
+            "valueString": "Egypt"
+        }
+    ]
+}

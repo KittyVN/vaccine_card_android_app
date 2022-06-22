@@ -1,0 +1,96 @@
+{
+    "resourceType": "ImmunizationRecommendation",
+    "date": "2022-06-15",
+    "patient": {
+        "reference": "Patient/1"
+    },
+    "recommendation": [
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "397430003",
+                    "display": "Diphtheriae"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "76902006",
+                    "display": "Tetanus"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            }
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "66071002",
+                    "display": "Viral hepatitis type B"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Close social contacts or long term visit"
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "14189004",
+                    "display": "Measles"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "Only for children"
+        },
+        {
+            "targetDisease": {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "45170000",
+                    "display": "tick-borne encephalitis"
+                  }
+                ]
+              },
+
+            "forecastStatus": {
+                "text": "due"
+            },
+
+            "description": "from April to October"
+        }
+    ],
+    "extension": [
+        {
+            "url": "http://tuwien.ac.at/moco/fhir/StructureDefinition/PlusCountryName",
+            "valueString": "Norway"
+        }
+    ]
+}

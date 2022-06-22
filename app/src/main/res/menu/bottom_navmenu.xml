@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/bottom_navmenu_home"
+        android:id="@+id/bottomNavHome"
+        android:icon="@drawable/ic_baseline_home_24"/>
+    <item android:title="@string/bottom_navmenu_vaccine"
+        android:id="@+id/bottomNavVaccine"
+        android:icon="@drawable/vaccines"/>
+    <item android:title="@string/bottom_navmenu_titer"
+        android:id="@+id/bottomNavTiter"
+        android:icon="@drawable/ic_baseline_medication_24"/>
+    <item android:title="@string/bottom_navmenu_country"
+        android:id="@+id/bottomNavCountry"
+        android:icon="@drawable/ic_baseline_airplanemode_active_24"/>
+</menu>

@@ -1,0 +1,20 @@
+{
+    "resourceType": "Patient",
+    "id": "100",
+    "identifier": [
+        {
+            "use": "official",
+            "value": "9999 190192"
+        }
+    ],
+    "name": [
+        {
+            "use": "official",
+            "given": ["Stephan"],
+            "family": "Graf"
+        }
+    ],
+    "gender": "male",
+    "birthDate": "1992-01-19"
+
+}
