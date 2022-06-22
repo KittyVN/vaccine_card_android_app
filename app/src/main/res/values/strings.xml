@@ -2,7 +2,7 @@
     <string name="app_name">MEI</string>
     <string name="bottom_navmenu_home">Home</string>
     <string name="bottom_navmenu_country">Travel</string>
-    <string name="bottom_navmenu_titer">Titer</string>
+    <string name="bottom_navmenu_titer">Titers</string>
     <string name="bottom_navmenu_vaccine">Immunizations</string>
     <string name="tvHome_welcome">Welcome back\nStephan</string>
     <string name="tvHome_impfungen">Immunizations</string>
